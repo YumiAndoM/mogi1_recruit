@@ -290,15 +290,24 @@ main fv
   overflow-x: hidden;
   height: 100vh;
 
+  @include max(xs) {
+    // height: clamp(62.5rem, 19.231rem + 230.77vw, 81.25rem);
+  }
+
 
   &__flontImg {
     position: absolute;
-    // width: 550px;
-    width: clamp(25rem, 15.749rem + 19.87vw, 34.375rem);
-    // right: 20%;
-    right: clamp(1.875rem, -8.609rem + 22.52vw, 12.5rem);
+    width: 30%;
+    // width: clamp(36.875rem, 36.363rem + 0.91vw, 37.5rem);
+    right: 20%;
+    // right: clamp(-37.5rem, -95.192rem + 307.69vw, -12.5rem);
     bottom: 0;
     z-index: 1;
+
+    @include max(xl) {
+      width: 80%;
+      right: -20%;
+    }
 
     @include max(m) {
       width: 500px;
@@ -306,8 +315,10 @@ main fv
     }
 
     @include max(xs) {
-      width: 500px;
-      right: -50%;
+      // width: 500px;
+      width: clamp(6.25rem, -65.865rem + 384.62vw, 37.5rem);
+      right: -40%;
+      // right: clamp(-6.25rem, -7.692rem + 7.69vw, -5.625rem);
     }
   }
 
@@ -316,8 +327,8 @@ main fv
     font-size: clamp(6.25rem, 0.083rem + 13.25vw, 12.5rem);
     position: absolute;
     z-index: 2;
-    // top: 20vh;
-    top: clamp(6.25rem, 5.633rem + 1.32vw, 6.875rem);
+    top: 20vh;
+    // top: clamp(6.25rem, 5.633rem + 1.32vw, 6.875rem);
     color: $mainColor2;
     transform: rotate(-10deg);
     // left: 200px;
@@ -326,6 +337,12 @@ main fv
     font-weight: 400;
     font-style: normal;
     text-shadow: 5px 5px 3px rgba(255, 255, 255, 0.46);
+
+    @include max(xl) {
+      top: 30vh;
+      font-size: 1000%;
+      left: 5%;
+    }
 
     @include max(m) {
       // font-size: 600%;
@@ -336,7 +353,7 @@ main fv
 
     @include max(xs) {
       font-size: 500%;
-      top: 35vh;
+      top: 40vh;
     }
 
 
@@ -358,6 +375,11 @@ main fv
     background-color: $cMainOpacity;
     display: block;
     padding: 20px 20px 15px 20px;
+
+    @include max(xl) {
+      font-size: 400%;
+      bottom: 170px;
+    }
 
     @include max(m) {
       font-size: 200%;
@@ -382,6 +404,11 @@ main fv
     background-color: $cMainOpacity;
     display: block;
     padding: 20px 20px 15px 20px;
+
+
+    @include max(xl) {
+      font-size: 400%;
+    }
 
     @include max(m) {
       font-size: 200%;
@@ -409,6 +436,12 @@ main fv
     rotate: 15deg;
     box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.4);
 
+    @include max(xl) {
+      top: 15vh;
+      left: 100px;
+      rotate: -15deg;
+    }
+
     @include max(m) {
       top: 50vh;
       left: 50px;
@@ -416,8 +449,11 @@ main fv
     }
 
     @include max(xs) {
+      width: 100px;
+      height: 100px;
       top: 15vh;
       left: 10px;
+      border: 3px solid $cWhite;
     }
 
 
@@ -435,6 +471,13 @@ main fv
       border: 2px solid $cWhite;
       @include positionArrangement;
       text-decoration: none;
+
+      @include max(xs) {
+        width: 90px;
+        height: 90px;
+        font-size: 80%;
+        line-height: 100px;
+      }
       
 
 
@@ -474,15 +517,23 @@ main concept
 .sec__box1 {
   width: 100%;
   // height: 150vh;
-  height: clamp(75rem, 60.714rem + 28.57vw, 87.5rem);
+  // height: clamp(75rem, 60.714rem + 28.57vw, 87.5rem);
+  height: 110%;
+    padding-bottom: 10%;
   @include backGroundColor;
 
   @include max(m) {
-    height: 165vh;
+    // height: 165vh;
+    // height: clamp(75rem, 60.714rem + 28.57vw, 87.5rem);
+    height: 110%;
+    padding-bottom: 10%;
   }
 
   @include max(xs) {
-    height: 190vh;
+    // height: 190vh;
+    // height: clamp(62.5rem, -38.462rem + 538.46vw, 106.25rem);
+    height: 110%;
+    padding-bottom: 10%;
   }
 }
 
@@ -658,6 +709,11 @@ main seek
   }
 
   &__textArea {
+
+    @include max(m) {
+      width: 50%;
+    }
+
     @include max(xs) {
       @include flex;
       width: 100%;
@@ -669,7 +725,7 @@ main seek
     width: 30%;
 
     @include max(m) {
-      @include flex($center: space-between);
+      @include flex($center: center);
       width: 90%;
 
       &:nth-child(even) {
@@ -690,8 +746,22 @@ main seek
       color: $cWhite;
       font-size: 300%;
 
+      @include max(m) {
+        text-align: right;
+
+        &:nth-child(even) {
+          text-align: left;
+        }
+      }
+
       @include max(xs) {
         margin-right: 5%;
+      }
+
+      &-2 {
+        @include max(m) {
+          text-align: left;
+        }
       }
     }
 
@@ -701,6 +771,16 @@ main seek
       color: $cWhite;
       margin-top: 20px;
       margin-bottom: 20px;
+
+      &-2 {
+        @include max(m) {
+          text-align: left !important;
+        }
+      }
+
+      @include max(m) {
+        text-align: right;
+      }
     }
 
     &__img {
@@ -774,6 +854,10 @@ main merit
       margin-right: auto;
       gap: 20%;
 
+      @include max(m) {
+        width: 90%;
+      }
+
       &:nth-child(even) {
         margin-top: 300px;
       }
@@ -800,6 +884,10 @@ main merit
 
       }
 
+      @include max(xl) {
+        width: 100%;
+      }
+
       @include max(m) {
         width: 100%;
         flex-direction: column;
@@ -813,6 +901,10 @@ main merit
 
     &__img {
       width: 35%;
+
+      @include max(xs) {
+        width: 50%;
+      }
     }
 
     &__textBox {
@@ -823,14 +915,26 @@ main merit
       @include max(m) {
         width: 80%;
       }
+
+      @include max(xs) {
+        width: 95%;
+      }
+
       &-h3 {
         font-size: 150%;
         margin-bottom: 30px;
+        color: $mainColor;
+        font-weight: bold;
 
         @include max(m) {
           text-align: center;
           margin-top: 30px;
           margin-bottom: 10px;
+        }
+
+        @include max(xs) {
+          font-size: 120%;
+          margin-top: 10px;
         }
       }
 
@@ -840,6 +944,11 @@ main merit
         @include max(m) {
           margin-bottom: 10px;
         }
+
+        @include max(xs) {
+          width: 100%;
+          font-size: 90%;
+        }
       }
     }
   }
@@ -847,12 +956,26 @@ main merit
   .voiceBox__right {
     margin-top: 80px;
     // margin-left: 40%;
-    margin-left: clamp(0rem, -28.571rem + 57.14vw, 25rem);
+    margin-left: clamp(25rem, 10.714rem + 28.57vw, 37.5rem);
+
+    @include max(xl) {
+          width: 100%;
+          margin-left: 0;
+        }
+
+    @include max(m) {
+      width: 100%;
+      margin-left: 0;
+    }
 
     .sec__merit1__img {
       width: 25%;
       margin-left: 5%;
       margin-right: 5%;
+
+      @include max(xs) {
+        width: 35%;
+      }
     }
   }
 
@@ -1006,22 +1129,34 @@ main Requirements
 
   
   width: 100%;
-  height: 120vh;
+  height: 120%;
   @include backGroundColor;
-  padding-top: 100px;
+  padding-top: 8%;
+  padding-bottom: 10%;
 
   clip-path: polygon(0 0, 100% 0%, 100% 90%, 50% 100%, 0 90%);
   margin-top: 100px;
 
+
+  @include max(xl) {
+    padding-top: 15%;
+    height: 120%;
+    padding-bottom: 20%;
+  }
+
   @include max(m) {
-    clip-path: polygon(0 0, 100% 0%, 100% 90%, 50% 100%, 0 90%);
-    padding-top: 50px;
-    height: 105vh;
+    // clip-path: polygon(0 0, 100% 0%, 100% 90%, 50% 100%, 0 90%);
+    padding-top: 20%;
+    padding-bottom: 20%;
+    height: 500% !important;
+    // height: 105vh;
   }
 
   @include max(xs) {
-    padding-top: 10px;
-    height: 115vh;
+    padding-top: 30%;
+    height: 120% !important;
+    padding-bottom: 30%;
+    // height: 115vh;
   }
 
   .ttl__white {
@@ -1037,6 +1172,10 @@ main Requirements
 
     @include max(m) {
       font-size: 120%;
+      padding-top: 100px;
+    }
+
+    @include max(xs) {
       padding-top: 100px;
     }
 
@@ -1057,24 +1196,31 @@ main Requirements
       }
     }
   }
-}
 
-.sec__req {
-  &__table {
+&__table {
     width: 100%;
     max-width: 700px;
     @include marginCenter;
     border-collapse: separate;
     border-spacing: 5px;
     height: auto;
-    margin-top: 30px;
+    // margin-top: 30px;
+
+    @include max(xxl) {
+      margin-top: -5%;
+    }
+
+    @include max(xl) {
+      margin-top: -10%;
+    }
 
     @include max(m) {
       width: 90%;
+      margin-top: -10%;
     }
 
     @include max(xs) {
-      margin-top: 10px;
+      margin-top: -20%;
       width: 90%;
     }
     
@@ -1152,6 +1298,7 @@ main Requirements
       font-size: 80%;
     }
   }
+
 }
 
 
@@ -1331,16 +1478,48 @@ input[type="radio"]:checked:before {
 
 .contact-btn {
   width: 150px;
-    background: $mainColor;
+    // background: $mainColor;
     border: none;
     font-size: 200%;
-    color: $cWhite;
+    color: $mainColor;
     padding-top: 10px;
     padding-bottom: 10px;
     @include marginCenter;
     margin-top: 50px;
     letter-spacing: 0.2em;
-}
+    line-height: 2em;
+
+
+          transition: .3s;
+          font-weight: bold;
+          position: relative;
+          padding: 0 10px;
+          // position: relative;
+          z-index: 1;
+          box-sizing: border-box;
+
+          overflow: hidden;
+
+          &::after {
+            position: absolute;
+            content: '';
+            right: 0%;
+            width: 300%;
+            height: 100%;
+            background: linear-gradient(to left, #fff 34%,$subColor 34%,$subColor 66%,$mainColor 66%);
+            z-index: -1;
+            transition: 0.6s;
+          }
+
+          &:hover {
+            color: $cWhite;
+            cursor: pointer;
+
+            &::after {
+              right: -200%;
+            }
+          }
+        }
 
 
 /*------------------------------------------
