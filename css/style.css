@@ -1,0 +1,1511 @@
+@charset "UTF-8";
+/*------------------------------------------
+common
+------------------------------------------*/
+.danceScriptFont {
+  font-family: "Dancing Script", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+.wrapper {
+  overflow-x: hidden;
+  background-image: url(../img/top_back.jpg);
+  background-attachment: fixed;
+  background-position: right;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.01);
+}
+@media only screen and (max-width: 430px) {
+  .wrapper {
+    background-image: url(../img/top_back.jpg);
+    background-attachment: fixed;
+    background-position: right;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.01);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 3em;
+}
+
+/*------------------------------------------
+header
+------------------------------------------*/
+#header {
+  width: 96%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 9999;
+  background-color: #ffffff;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 2%;
+  padding-left: 2%;
+  position: fixed;
+  box-shadow: 0px 10px 10px -6px rgba(0, 0, 0, 0.3);
+}
+#header .header__h1 {
+  width: 300px;
+}
+#header .header__h1 #logoLink {
+  width: 100%;
+  height: 100%;
+}
+#header .header__h1 #logoLink #logo {
+  width: 150px;
+}
+#header .navMenu {
+  width: clamp(31.25rem, 24.107rem + 14.29vw, 37.5rem);
+  margin-left: clamp(6.25rem, -36.607rem + 85.71vw, 43.75rem);
+}
+#header .navMenu__box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media only screen and (max-width: 800px) {
+  #header .navMenu__box {
+    flex-direction: column;
+  }
+}
+#header .navMenu__box__item {
+  letter-spacing: 0.1em;
+  overflow: hidden;
+  line-height: 4em;
+  border-radius: 2px;
+}
+#header .navMenu__box__item__link {
+  width: 100%;
+  display: block;
+  text-decoration: none;
+  color: #ff9999;
+  transition: 0.3s;
+  font-weight: bold;
+  position: relative;
+  padding: 0 10px;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+}
+@media only screen and (max-width: 800px) {
+  #header .navMenu__box__item__link {
+    color: #ffffff;
+  }
+}
+#header .navMenu__box__item__link::after {
+  position: absolute;
+  content: "";
+  right: 0%;
+  width: 300%;
+  height: 100%;
+  background: linear-gradient(to left, #fff 34%, #ffcccc 34%, #ffcccc 66%, #ff9999 66%);
+  z-index: -1;
+  transition: 0.6s;
+}
+@media only screen and (max-width: 800px) {
+  #header .navMenu__box__item__link::after {
+    visibility: hidden;
+  }
+}
+#header .navMenu__box__item__link:hover {
+  color: #ffffff;
+}
+#header .navMenu__box__item__link:hover::after {
+  right: -200%;
+}
+
+/*========= ナビゲーションのためのCSS ===============*/
+@media only screen and (max-width: 800px) {
+  /*アクティブになったエリア*/
+  #g-nav.panelactive {
+    /*position:fixed;にし、z-indexの数値を大きくして前面へ*/
+    z-index: 999;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+  }
+  /*丸の拡大*/
+  .circle-bg {
+    position: fixed;
+    z-index: 3;
+    /*丸の形*/
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgb(255, 153, 153);
+    background: linear-gradient(349deg, rgb(255, 153, 153) 0%, rgb(255, 204, 204) 100%);
+    /*丸のスタート位置と形状*/
+    transform: scale(0); /*scaleをはじめは0に*/
+    right: -50px;
+    top: calc(50% - 50px); /*50%から円の半径を引いた値*/
+    transition: all 0.6s; /*0.6秒かけてアニメーション*/
+  }
+  .circle-bg.circleactive {
+    transform: scale(50); /*クラスが付与されたらscaleを拡大*/
+  }
+  #g-nav.panelactive #g-nav-list {
+    display: block; /*クラスが付与されたら出現*/
+  }
+  /*ナビゲーション*/
+  #g-nav ul {
+    opacity: 0; /*はじめは透過0*/
+    /*ナビゲーション天地中央揃え※レイアウトによって調整してください。不必要なら削除*/
+    position: absolute;
+    z-index: 999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  /*背景が出現後にナビゲーションを表示*/
+  #g-nav.panelactive ul {
+    opacity: 1;
+  }
+  /* 背景が出現後にナビゲーション li を表示※レイアウトによって調整してください。不必要なら削除*/
+  #g-nav.panelactive ul li {
+    animation-name: gnaviAnime;
+    animation-duration: 1s;
+    animation-delay: 0.2s; /*0.2 秒遅らせて出現*/
+    animation-fill-mode: forwards;
+    opacity: 0;
+  }
+  @keyframes gnaviAnime {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  /*リストのレイアウト設定*/
+  #g-nav li {
+    text-align: center;
+    list-style: none;
+  }
+  #g-nav li a {
+    color: #ffcccc;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: bold;
+  }
+  /*========= ボタンのためのCSS ===============*/
+  .openbtn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 9999; /*ボタンを最前面に*/
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+  }
+  /*×に変化*/
+  .openbtn span {
+    display: inline-block;
+    transition: all 0.4s;
+    position: absolute;
+    left: 14px;
+    height: 3px;
+    border-radius: 2px;
+    background-color: #ff9999;
+    width: 45%;
+  }
+  .openbtn span:nth-of-type(1) {
+    top: 15px;
+  }
+  .openbtn span:nth-of-type(2) {
+    top: 23px;
+  }
+  .openbtn span:nth-of-type(3) {
+    top: 31px;
+  }
+  .openbtn.active span:nth-of-type(1) {
+    top: 18px;
+    left: 18px;
+    transform: translateY(6px) rotate(-45deg);
+    width: 30%;
+  }
+  .openbtn.active span:nth-of-type(2) {
+    opacity: 0;
+  }
+  .openbtn.active span:nth-of-type(3) {
+    top: 30px;
+    left: 18px;
+    transform: translateY(-6px) rotate(45deg);
+    width: 30%;
+  }
+}
+/*------------------------------------------
+main fv
+------------------------------------------*/
+.sec__fv {
+  background-image: url(../img/top_back.jpg);
+  background-attachment: fixed;
+  background-position: right;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.01);
+  overflow-x: hidden;
+  height: 100vh;
+}
+.sec__fv__flontImg {
+  position: absolute;
+  width: clamp(25rem, 15.749rem + 19.87vw, 34.375rem);
+  right: clamp(1.875rem, -8.609rem + 22.52vw, 12.5rem);
+  bottom: 0;
+  z-index: 1;
+}
+@media only screen and (max-width: 800px) {
+  .sec__fv__flontImg {
+    width: 500px;
+    right: -20%;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .sec__fv__flontImg {
+    width: 500px;
+    right: -50%;
+  }
+}
+.sec__fv__mainCatchCopy {
+  font-size: clamp(6.25rem, 0.083rem + 13.25vw, 12.5rem);
+  position: absolute;
+  z-index: 2;
+  top: clamp(6.25rem, 5.633rem + 1.32vw, 6.875rem);
+  color: #FF6969;
+  transform: rotate(-10deg);
+  left: clamp(1.875rem, -8.609rem + 22.52vw, 12.5rem);
+  font-family: "Zen Kurenaido", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-shadow: 5px 5px 3px rgba(255, 255, 255, 0.46);
+}
+@media only screen and (max-width: 800px) {
+  .sec__fv__mainCatchCopy {
+    font-size: clamp(6.25rem, 0.083rem + 13.25vw, 12.5rem);
+    left: 5%;
+    top: 20vh;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .sec__fv__mainCatchCopy {
+    font-size: 500%;
+    top: 35vh;
+  }
+}
+.sec__fv__mainCatchCopy__span {
+  font-size: 70%;
+  color: #ff9999;
+}
+.sec__fv__text1 {
+  position: absolute;
+  z-index: 2;
+  bottom: clamp(6.25rem, 0.083rem + 13.25vw, 12.5rem);
+  font-size: clamp(1.875rem, 0.642rem + 2.65vw, 3.125rem);
+  font-weight: bold;
+  color: #ffffff;
+  background-color: rgba(255, 153, 153, 0.6);
+  display: block;
+  padding: 20px 20px 15px 20px;
+}
+@media only screen and (max-width: 800px) {
+  .sec__fv__text1 {
+    font-size: 200%;
+    bottom: 80px;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .sec__fv__text1 {
+    font-size: 150%;
+  }
+}
+.sec__fv__text2 {
+  position: absolute;
+  z-index: 2;
+  bottom: clamp(1.875rem, -2.442rem + 9.27vw, 6.25rem);
+  left: 15%;
+  font-size: clamp(1.875rem, 0.642rem + 2.65vw, 3.125rem);
+  font-weight: bold;
+  color: #ffffff;
+  background-color: rgba(255, 153, 153, 0.6);
+  display: block;
+  padding: 20px 20px 15px 20px;
+}
+@media only screen and (max-width: 800px) {
+  .sec__fv__text2 {
+    font-size: 200%;
+    bottom: 10px;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .sec__fv__text2 {
+    font-size: 150%;
+  }
+}
+.sec__fv__entryButton {
+  position: absolute;
+  z-index: 3;
+  font-size: 150%;
+  top: 20vh;
+  height: 150px;
+  width: 150px;
+  background-color: #339999;
+  right: clamp(1.875rem, -8.609rem + 22.52vw, 12.5rem);
+  border-radius: 50%;
+  border: 5px solid #ffffff;
+  rotate: 15deg;
+  box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.4);
+}
+@media only screen and (max-width: 800px) {
+  .sec__fv__entryButton {
+    top: 50vh;
+    left: 50px;
+    rotate: -15deg;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .sec__fv__entryButton {
+    top: 15vh;
+    left: 10px;
+  }
+}
+.sec__fv__entryButton__text {
+  position: absolute;
+  z-index: 4;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center;
+  line-height: 130px;
+  width: 120px;
+  height: 120px;
+  display: block;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-decoration: none;
+}
+.sec__fv__entryButton__text::before {
+  content: "> ";
+  font-size: 60%;
+  vertical-align: middle;
+}
+.sec__fv__entryButton__text::after {
+  content: " <";
+  font-size: 60%;
+  vertical-align: middle;
+}
+
+.entryTarget {
+  animation: floating-y 1.8s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes floating-y {
+  0% {
+    transform: translateY(-10%);
+  }
+  100% {
+    transform: translateY(10%);
+  }
+}
+/*------------------------------------------
+main concept
+------------------------------------------*/
+.sec__box1 {
+  width: 100%;
+  height: clamp(75rem, 60.714rem + 28.57vw, 87.5rem);
+  background: rgb(255, 153, 153);
+  background: linear-gradient(349deg, rgb(255, 153, 153) 0%, rgb(255, 204, 204) 100%);
+}
+@media only screen and (max-width: 800px) {
+  .sec__box1 {
+    height: 165vh;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .sec__box1 {
+    height: 190vh;
+  }
+}
+
+.sec__concept .ttl__white {
+  color: #ffffff;
+  font-size: 150%;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 150px;
+  position: relative;
+  z-index: 20;
+}
+@media only screen and (max-width: 800px) {
+  .sec__concept .ttl__white {
+    font-size: 120%;
+    padding-top: 100px;
+  }
+}
+.sec__concept .ttl__white::after {
+  content: "Concept";
+  color: #ff9999;
+  font-family: "Dancing Script", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 500%;
+  opacity: 0.5;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  padding-top: 20px;
+}
+@media only screen and (max-width: 430px) {
+  .sec__concept .ttl__white::after {
+    font-size: 300%;
+  }
+}
+.sec__concept__box {
+  margin-top: 90px;
+  width: clamp(37.5rem, 23.214rem + 28.57vw, 50rem);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  position: relative;
+  z-index: 99;
+  color: #333333;
+}
+@media only screen and (max-width: 800px) {
+  .sec__concept__box {
+    width: 90%;
+    font-size: 90%;
+    margin-top: 50px;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .sec__concept__box {
+    width: 90%;
+    font-size: 80%;
+  }
+}
+.sec__concept__box::after {
+  content: "";
+  background-color: rgba(255, 255, 255, 0.5);
+  display: block;
+  width: 90%;
+  height: 300px;
+  position: absolute;
+  border-radius: 2px;
+  left: 52%;
+  top: 54%;
+  transform: translate(-48%, -46%);
+  z-index: -1;
+}
+@media only screen and (max-width: 430px) {
+  .sec__concept__box::after {
+    width: 95%;
+    height: 250px;
+  }
+}
+.sec__concept__box::before {
+  content: "";
+  width: 90%;
+  height: 300px;
+  border-radius: 2px;
+  border: 1px solid #ff9999;
+  display: block;
+  position: absolute;
+  left: 48%;
+  top: 47%;
+  transform: translate(-52%, -53%);
+}
+@media only screen and (max-width: 430px) {
+  .sec__concept__box::before {
+    width: 95%;
+    height: 250px;
+  }
+}
+.sec__concept__box__text {
+  text-align: center;
+  margin-top: 15px;
+  line-height: 1.4em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sec__concept__box__text .br__xs {
+  display: none;
+}
+@media only screen and (max-width: 800px) {
+  .sec__concept__box__text .br__xs {
+    display: block;
+  }
+}
+
+/*------------------------------------------
+main seek
+------------------------------------------*/
+@media only screen and (max-width: 800px) {
+  .sec__seek {
+    width: 100%;
+  }
+}
+.sec__seek .ttl__white {
+  color: #ffffff;
+  font-size: 150%;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 150px;
+  position: relative;
+  z-index: 20;
+  margin-top: 70px;
+}
+@media only screen and (max-width: 800px) {
+  .sec__seek .ttl__white {
+    font-size: 120%;
+    padding-top: 100px;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .sec__seek .ttl__white {
+    margin-top: 40px;
+  }
+}
+.sec__seek .ttl__white::after {
+  content: "Seek";
+  color: #ff9999;
+  font-family: "Dancing Script", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 500%;
+  opacity: 0.5;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  padding-top: 20px;
+}
+@media only screen and (max-width: 430px) {
+  .sec__seek .ttl__white::after {
+    font-size: 300%;
+  }
+}
+.sec__seek__container {
+  width: 70%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 70px;
+}
+@media only screen and (max-width: 800px) {
+  .sec__seek__container {
+    flex-direction: column;
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .sec__seek__container {
+    margin-top: 10px;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .sec__seek__textArea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 30px;
+  }
+}
+.sec__seek__box {
+  width: 30%;
+}
+@media only screen and (max-width: 800px) {
+  .sec__seek__box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+  }
+  .sec__seek__box:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+}
+@media only screen and (max-width: 800px) and (max-width: 430px) {
+  .sec__seek__box:nth-child(even) {
+    flex-direction: column;
+  }
+}
+@media only screen and (max-width: 800px) and (max-width: 430px) {
+  .sec__seek__box {
+    flex-direction: column;
+  }
+}
+.sec__seek__box__number {
+  text-align: center;
+  color: #ffffff;
+  font-size: 300%;
+}
+@media only screen and (max-width: 430px) {
+  .sec__seek__box__number {
+    margin-right: 5%;
+  }
+}
+.sec__seek__box__copy {
+  text-align: center;
+  font-size: 120%;
+  color: #ffffff;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.sec__seek__box__img {
+  width: clamp(9.375rem, -1.339rem + 21.43vw, 18.75rem);
+  height: clamp(9.375rem, -1.339rem + 21.43vw, 18.75rem);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  overflow: hidden;
+}
+@media only screen and (max-width: 800px) {
+  .sec__seek__box__img {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/*------------------------------------------
+main merit
+------------------------------------------*/
+.sec__merit {
+  width: 100%;
+  /*------------------------------------------
+  main merit22
+  ------------------------------------------*/
+}
+.sec__merit .ttl__pink {
+  color: #ff9999;
+  font-size: 150%;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 150px;
+  position: relative;
+  z-index: 20;
+}
+@media only screen and (max-width: 800px) {
+  .sec__merit .ttl__pink {
+    font-size: 120%;
+    padding-top: 100px;
+  }
+}
+.sec__merit .ttl__pink::after {
+  content: "Merit";
+  color: #ff9999;
+  font-family: "Dancing Script", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 500%;
+  opacity: 0.3;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  padding-top: 20px;
+}
+@media only screen and (max-width: 430px) {
+  .sec__merit .ttl__pink::after {
+    font-size: 300%;
+  }
+}
+.sec__merit .sec__merit1__box {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 20%;
+}
+.sec__merit .sec__merit1__box:nth-child(even) {
+  margin-top: 300px;
+}
+.sec__merit .sec__merit1__voiceBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  width: clamp(43.75rem, 29.464rem + 28.57vw, 56.25rem);
+  margin-top: 70px;
+  padding-top: 10px;
+  border: 1px solid #ff9999;
+  border-radius: 2px;
+}
+.sec__merit .sec__merit1__voiceBox:nth-child(even) {
+  flex-direction: row-reverse;
+}
+@media only screen and (max-width: 800px) {
+  .sec__merit .sec__merit1__voiceBox:nth-child(even) {
+    width: 100%;
+    flex-direction: column;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .sec__merit .sec__merit1__voiceBox {
+    width: 100%;
+    flex-direction: column;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .sec__merit .sec__merit1__voiceBox {
+    width: 100%;
+  }
+}
+.sec__merit .sec__merit1__img {
+  width: 35%;
+}
+.sec__merit .sec__merit1__textBox {
+  width: 60%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+@media only screen and (max-width: 800px) {
+  .sec__merit .sec__merit1__textBox {
+    width: 80%;
+  }
+}
+.sec__merit .sec__merit1__textBox-h3 {
+  font-size: 150%;
+  margin-bottom: 30px;
+}
+@media only screen and (max-width: 800px) {
+  .sec__merit .sec__merit1__textBox-h3 {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+}
+.sec__merit .sec__merit1__textBox-p {
+  line-height: 1.5em;
+}
+@media only screen and (max-width: 800px) {
+  .sec__merit .sec__merit1__textBox-p {
+    margin-bottom: 10px;
+  }
+}
+.sec__merit .voiceBox__right {
+  margin-top: 80px;
+  margin-left: clamp(0rem, -28.571rem + 57.14vw, 25rem);
+}
+.sec__merit .voiceBox__right .sec__merit1__img {
+  width: 25%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.sec__merit .sec__merit1__container {
+  position: relative;
+  width: 100%;
+}
+.sec__merit .sec__merit1__bgLeft {
+  position: absolute;
+  width: clamp(25rem, -10.714rem + 71.43vw, 56.25rem);
+  height: 300px;
+  background: rgba(255, 204, 204, 0.6);
+  z-index: -1;
+  top: 200px;
+}
+.sec__merit .sec__merit1__bgRight {
+  position: absolute;
+  width: clamp(25rem, -37.5rem + 125vw, 56.25rem);
+  height: 300px;
+  background: rgba(255, 204, 204, 0.6);
+  z-index: -1;
+  top: 700px;
+  right: 0;
+}
+.sec__merit .ttl2__pink {
+  color: #ff9999;
+  font-size: 150%;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 150px;
+  position: relative;
+  z-index: 20;
+  margin-top: 0px;
+}
+@media only screen and (max-width: 800px) {
+  .sec__merit .ttl2__pink {
+    padding-top: 100px;
+  }
+}
+.sec__merit .sec__merit2__container {
+  width: clamp(50rem, 35.714rem + 28.57vw, 62.5rem);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media only screen and (max-width: 800px) {
+  .sec__merit .sec__merit2__container {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+.sec__merit .sec__merit2__box {
+  width: clamp(18.75rem, 11.607rem + 14.29vw, 25rem);
+  position: relative;
+  margin-top: -50px;
+}
+@media only screen and (max-width: 800px) {
+  .sec__merit .sec__merit2__box {
+    width: 100%;
+  }
+}
+.sec__merit .sec__merit2__box__imgBox {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -60%);
+}
+.sec__merit .sec__merit2__box__imgBox-img {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+.sec__merit .sec__merit2__box__textBox {
+  width: 80%;
+  background: #ff9999;
+  color: #ffffff;
+  padding-top: 100px;
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-top: 150px;
+  height: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 2px;
+}
+@media only screen and (max-width: 800px) {
+  .sec__merit .sec__merit2__box__textBox {
+    width: 80%;
+    height: 150px;
+  }
+}
+.sec__merit .sec__merit2__box__textBox-ttl {
+  margin-top: 30px;
+  font-weight: bold;
+  font-size: 180%;
+  text-align: center;
+  margin-bottom: 30px;
+}
+@media only screen and (max-width: 800px) {
+  .sec__merit .sec__merit2__box__textBox-ttl {
+    font-size: 120%;
+    margin-top: 10px;
+  }
+}
+.sec__merit .sec__merit2__box__textBox-text {
+  line-height: 1.3em;
+}
+@media only screen and (max-width: 800px) {
+  .sec__merit .sec__merit2__box__textBox-text {
+    font-size: 100%;
+  }
+}
+
+/*------------------------------------------
+main Requirements
+------------------------------------------*/
+.sec__req {
+  width: 100%;
+  height: 120vh;
+  background: rgb(255, 153, 153);
+  background: linear-gradient(349deg, rgb(255, 153, 153) 0%, rgb(255, 204, 204) 100%);
+  padding-top: 100px;
+  -webkit-clip-path: polygon(0 0, 100% 0%, 100% 90%, 50% 100%, 0 90%);
+          clip-path: polygon(0 0, 100% 0%, 100% 90%, 50% 100%, 0 90%);
+  margin-top: 100px;
+}
+@media only screen and (max-width: 800px) {
+  .sec__req {
+    -webkit-clip-path: polygon(0 0, 100% 0%, 100% 90%, 50% 100%, 0 90%);
+            clip-path: polygon(0 0, 100% 0%, 100% 90%, 50% 100%, 0 90%);
+    padding-top: 50px;
+    height: 105vh;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .sec__req {
+    padding-top: 10px;
+    height: 115vh;
+  }
+}
+.sec__req .ttl__white {
+  color: #ffffff;
+  font-size: 150%;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 150px;
+  position: relative;
+  left: 50%;
+  top: 10%;
+  transform: translate(-50%, -90%);
+  z-index: 20;
+}
+@media only screen and (max-width: 800px) {
+  .sec__req .ttl__white {
+    font-size: 120%;
+    padding-top: 100px;
+  }
+}
+.sec__req .ttl__white::after {
+  content: "Requirements";
+  color: #ff9999;
+  font-family: "Dancing Script", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 500%;
+  opacity: 0.3;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  padding-top: 20px;
+}
+@media only screen and (max-width: 430px) {
+  .sec__req .ttl__white::after {
+    font-size: 300%;
+  }
+}
+
+.sec__req__table {
+  width: 100%;
+  max-width: 700px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: separate;
+  border-spacing: 5px;
+  height: auto;
+  margin-top: 30px;
+}
+@media only screen and (max-width: 800px) {
+  .sec__req__table {
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .sec__req__table {
+    margin-top: 10px;
+    width: 90%;
+  }
+}
+.sec__req__table-tr {
+  margin-bottom: 2px;
+}
+.sec__req__table-th {
+  width: 20%;
+  vertical-align: middle;
+  background: #ff9999;
+  border-radius: 2px;
+}
+@media only screen and (max-width: 430px) {
+  .sec__req__table-th {
+    display: block;
+    width: 100%;
+    height: 30px;
+  }
+}
+.sec__req__table-th h3 {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 120%;
+  letter-spacing: 0.3em;
+}
+@media only screen and (max-width: 800px) {
+  .sec__req__table-th h3 {
+    font-size: 110%;
+    letter-spacing: 0.1em;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .sec__req__table-th h3 {
+    line-height: 30px;
+  }
+}
+.sec__req__table-td {
+  width: 70%;
+  background: #ffffff;
+  border: 2px solid rgba(255, 153, 153, 0.6) 0;
+  padding: 20px 5% 0 5%;
+}
+@media only screen and (max-width: 800px) {
+  .sec__req__table-td {
+    padding-bottom: 10px;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .sec__req__table-td {
+    display: block;
+    width: 87%;
+    margin-bottom: 10px;
+    padding-left: 8%;
+  }
+}
+.sec__req__table-ul .sec__req__box__text-list {
+  list-style-type: disc;
+}
+.sec__req__table-ol .sec__req__box__text-list {
+  list-style-type: decimal;
+}
+.sec__req__box__text-list {
+  line-height: 1.2em;
+  margin-bottom: 20px;
+}
+@media only screen and (max-width: 800px) {
+  .sec__req__box__text-list {
+    font-size: 90%;
+    margin-bottom: 10px;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .sec__req__box__text-list {
+    font-size: 80%;
+  }
+}
+
+/*------------------------------------------
+main Entry
+------------------------------------------*/
+.sec__entry .ttl__pink {
+  color: #ff9999;
+  font-size: 150%;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 150px;
+  position: relative;
+  z-index: 20;
+}
+@media only screen and (max-width: 800px) {
+  .sec__entry .ttl__pink {
+    font-size: 120%;
+    padding-top: 100px;
+  }
+}
+.sec__entry .ttl__pink::after {
+  content: "Entry";
+  color: #ff9999;
+  font-family: "Dancing Script", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 500%;
+  opacity: 0.3;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  padding-top: 20px;
+}
+@media only screen and (max-width: 430px) {
+  .sec__entry .ttl__pink::after {
+    font-size: 300%;
+  }
+}
+.sec__entry__container {
+  width: 90%;
+  max-width: 700px;
+  background: #ffcccc;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  padding: 50px 5%;
+  border-radius: 2px;
+}
+@media only screen and (max-width: 430px) {
+  .sec__entry__container {
+    margin-top: 10px;
+  }
+}
+
+.Form-Item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+@media only screen and (max-width: 800px) {
+  .Form-Item {
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    margin-top: 30px;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .Form-Item {
+    width: 90%;
+  }
+}
+.Form-Item-Label {
+  width: 30%;
+  text-align: left;
+}
+@media only screen and (max-width: 800px) {
+  .Form-Item-Label {
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 90%;
+  }
+}
+.Form-Item-Label-Required {
+  background: #339999;
+  color: #ffffff;
+  font-size: 70%;
+  padding: 2px;
+  line-height: 1.2em;
+  margin-left: 5%;
+  border-radius: 2px;
+}
+.Form-Item .wpcf7-form-control-wrap {
+  width: 100%;
+}
+.Form-Item .wpcf7-form-control {
+  line-height: 50px;
+  width: 100%;
+  display: block;
+  border: none;
+}
+.Form-Item .wpcf7-textarea {
+  line-height: 30px;
+}
+.Form-Item .wpcf7-radio {
+  display: flex;
+  flex-direction: column;
+}
+@media only screen and (max-width: 800px) {
+  .Form-Item .wpcf7-list-item {
+    line-height: 1.5em;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .Form-Item .wpcf7-list-item-label {
+    font-size: 90%;
+    line-height: 0.1em;
+  }
+}
+
+input[type=radio] {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ff9999;
+  background: #ffffff;
+  border-radius: 50%;
+  vertical-align: -2px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+input[type=radio]:checked:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #ff9999;
+  content: "";
+}
+
+.button-wrap .wpcf7-form-control {
+  width: 20%;
+  background: #ff9999;
+  border: none;
+  font-size: 200%;
+  color: #ffffff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  letter-spacing: 0.2em;
+}
+
+.contact-btn {
+  width: 150px;
+  background: #ff9999;
+  border: none;
+  font-size: 200%;
+  color: #ffffff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  letter-spacing: 0.2em;
+}
+
+/*------------------------------------------
+footer
+------------------------------------------*/
+.footer_copyRight {
+  width: 100%;
+  text-align: center;
+  color: #ff9999;
+  line-height: 90px;
+}
+
+/*------------------------------------------
+fade animation
+------------------------------------------*/
+/* fadeUp */
+.fadeUp {
+  animation: fadeUpAnime 0.8s forwards; /* fadeUpAnimeを0.8秒で一回実行 */
+  opacity: 0;
+}
+
+/* fadeCross */
+.fadeCross {
+  animation: fadeCrossAnime 0.8s forwards; /* fadeUpAnimeを0.8秒で一回実行 */
+  opacity: 0;
+  overflow: hidden;
+}
+
+.fadeUpTrigger,
+.fadeCrossTrigger {
+  opacity: 0; /* 初めは見えないようにしておく */
+}
+
+/* fadeUp */
+@keyframes fadeUpAnime {
+  from {
+    opacity: 0; /* 初めは見えないようにしておく */
+    transform: translateY(100px); /* 100px下に動かしておく */
+  }
+  to {
+    opacity: 1; /* 可視化する */
+    transform: translateY(0); /* 元の位置に戻す */
+  }
+}
+/* fadeCross */
+@keyframes fadeCrossAnime {
+  from {
+    opacity: 0;
+    transform: rotateY(45deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotateY(0);
+  }
+}
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  font-weight: normal;
+}
+
+body {
+  line-height: 1;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+nav ul {
+  list-style: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+/* change colors to suit your needs */
+ins {
+  background-color: #ff9;
+  color: #000;
+  text-decoration: none;
+}
+
+/* change colors to suit your needs */
+mark {
+  background-color: #ff9;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+abbr[title],
+dfn[title] {
+  border-bottom: 1px dotted;
+  cursor: help;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* change border color to suit your needs */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #cccccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+input,
+select {
+  vertical-align: middle;
+}

@@ -1,0 +1,58 @@
+@use "../setting" as *;
+@use "_breakpoint" as *;
+
+
+@mixin max($breakPoint) {
+  @media #{map-get($breakPints, $breakPoint)} {
+    @content;
+  }
+}
+
+@mixin danceScript($weight: 400) {
+  font-family: "Dancing Script", cursive;
+  // font-optical-sizing: auto;
+  font-weight: $weight;
+  font-style: normal;
+}
+
+
+@mixin flex($center: center, $itemsCenter:center){
+  display: flex;
+  justify-content: $center;
+  align-items: $itemsCenter;
+}
+
+@mixin  backGround ($height: 100vh) {
+  background-image: url(../img/top_back.jpg);
+  background-attachment: fixed;
+  // background-size: 120%;
+  background-position: right;
+  background-repeat: no-repeat;
+  // height: $height;
+  position: relative;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.01);
+}
+
+@mixin positionArrangement ($left:50%, $top: 50%, $translateX: -50%, $translateY: -50%) {
+  left: $left;
+  top: $top;
+  
+  transform: translate($translateX, $translateY);
+}
+
+
+@mixin marginCenter ($marginL:auto, $marginR:auto) {
+  display: block;
+  margin-left: $marginL;
+  margin-right: $marginR;
+}
+
+@mixin backGroundColor {
+  background: rgb(255,153,153);
+  background: linear-gradient(349deg, rgba(255,153,153,1) 0%, rgba(255,204,204,1) 100%);
+}
+
+@mixin borderR ($radius:2px){
+  border-radius: $radius;
+}

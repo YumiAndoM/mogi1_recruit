@@ -1,0 +1,1408 @@
+@use "../global" as *;
+
+
+/*------------------------------------------
+common
+------------------------------------------*/
+.danceScriptFont {
+  @include danceScript;
+}
+
+html,body {
+  overflow-x: hidden;
+}
+
+.wrapper {
+
+  overflow-x: hidden;
+  @include backGround(clamp(281.25rem, 239.205rem + 210.23vw, 396.875rem));
+
+  @include max(xs) {
+    @include backGround(clamp(531.25rem, 522.775rem + 42.37vw, 562.5rem));
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 3em;
+}
+
+
+/*------------------------------------------
+header
+------------------------------------------*/
+#header {
+  width: 96%;
+  @include flex(space-between);
+  z-index: 9999;
+  background-color: $cWhite;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 2%;
+  padding-left: 2%;
+  position: fixed;
+  box-shadow: 0px 10px 10px -6px rgba(0, 0, 0, 0.3);
+
+  .header__h1 {
+    width: 300px;
+
+    #logoLink {
+    width: 100%;
+    height: 100%;
+
+      #logo {
+      width: 150px;
+      }
+    }
+  }
+
+  
+  
+  .navMenu {
+    // width: 40%;
+    width: clamp(31.25rem, 24.107rem + 14.29vw, 37.5rem);
+    // margin-left: 60%;
+    margin-left: clamp(6.25rem, -36.607rem + 85.71vw, 43.75rem);
+    
+
+    &__box {
+      @include flex(space-between);
+
+      @include max(m) {
+        flex-direction: column;
+      }
+
+      &__item {
+        letter-spacing: 0.1em;
+        overflow: hidden;
+        line-height: 4em;
+        @include borderR;
+
+        &__link {
+          width: 100%;
+          display: block;
+          text-decoration: none;
+          color: $mainColor;
+
+          transition: .3s;
+          font-weight: bold;
+          position: relative;
+          padding: 0 10px;
+          position: relative;
+          z-index: 1;
+          box-sizing: border-box;
+
+          @include max(m) {
+            color: $cWhite;
+          }
+
+          &::after {
+            position: absolute;
+            content: '';
+            right: 0%;
+            width: 300%;
+            height: 100%;
+            background: linear-gradient(to left, #fff 34%,$subColor 34%,$subColor 66%,$mainColor 66%);
+            z-index: -1;
+            transition: 0.6s;
+
+            @include max(m) {
+              visibility: hidden;
+            }
+          }
+
+          &:hover {
+            color: $cWhite;
+
+            &::after {
+              right: -200%;
+            }
+          }
+
+        }
+      }
+    }
+  }
+}
+
+/*========= ナビゲーションのためのCSS ===============*/
+
+@include max(m) {
+/*アクティブになったエリア*/
+#g-nav.panelactive{
+    /*position:fixed;にし、z-indexの数値を大きくして前面へ*/
+    // position:fixed;
+    z-index: 999;
+	top: 0;
+	width:100%;
+    height: 100vh;
+    
+}
+
+/*丸の拡大*/
+.circle-bg{
+    position: fixed;
+	z-index:3;
+    /*丸の形*/
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    // background: $subColor;
+    @include backGroundColor;
+    /*丸のスタート位置と形状*/
+	transform: scale(0);/*scaleをはじめは0に*/
+    right:-50px;
+    top:calc(50% - 50px);/*50%から円の半径を引いた値*/
+    transition: all .6s;/*0.6秒かけてアニメーション*/
+}
+
+.circle-bg.circleactive{
+	transform: scale(50);/*クラスが付与されたらscaleを拡大*/
+}
+
+// /*ナビゲーションの縦スクロール*/
+// #g-nav-list{
+//     display: none;/*はじめは表示なし*/
+//     /*ナビの数が増えた場合縦スクロール*/
+//     position: fixed;
+//     z-index: 999; 
+//     width: 100%;
+//     height: 100vh;
+//     overflow: auto;
+//     -webkit-overflow-scrolling: touch;
+// }
+
+#g-nav.panelactive #g-nav-list{
+    display: block; /*クラスが付与されたら出現*/
+}
+
+/*ナビゲーション*/
+#g-nav ul {
+	opacity: 0;/*はじめは透過0*/
+    /*ナビゲーション天地中央揃え※レイアウトによって調整してください。不必要なら削除*/
+    position: absolute;
+    z-index: 999;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+
+/*背景が出現後にナビゲーションを表示*/
+#g-nav.panelactive ul {
+    opacity:1;
+}
+
+/* 背景が出現後にナビゲーション li を表示※レイアウトによって調整してください。不必要なら削除*/
+#g-nav.panelactive ul li{
+animation-name:gnaviAnime;
+animation-duration:1s;
+animation-delay:.2s;/*0.2 秒遅らせて出現*/
+animation-fill-mode:forwards;
+opacity:0;
+}
+@keyframes gnaviAnime{
+0% {
+opacity: 0;
+}
+100% {
+opacity: 1;
+}
+}
+
+
+/*リストのレイアウト設定*/
+#g-nav li{
+	text-align: center; 
+	list-style: none;
+}
+
+#g-nav li a{
+	color: $subColor;
+	text-decoration: none;
+	padding:10px;
+	display: block;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	font-weight: bold;
+}
+
+
+/*========= ボタンのためのCSS ===============*/
+.openbtn{
+	position:fixed;
+	top:10px;
+	right: 10px;
+	z-index: 9999;/*ボタンを最前面に*/
+	cursor: pointer;
+    width: 50px;
+    height:50px;
+}
+	
+/*×に変化*/	
+.openbtn span{
+    display: inline-block;
+    transition: all .4s;
+    position: absolute;
+    left: 14px;
+    height: 3px;
+    border-radius: 2px;
+    background-color: $mainColor;
+    width: 45%;
+  }
+
+.openbtn span:nth-of-type(1) {
+	top:15px;	
+}
+
+.openbtn span:nth-of-type(2) {
+	top:23px;
+}
+
+.openbtn span:nth-of-type(3) {
+	top:31px;
+}
+
+.openbtn.active span:nth-of-type(1) {
+    top: 18px;
+    left: 18px;
+    transform: translateY(6px) rotate(-45deg);
+    width: 30%;
+}
+
+.openbtn.active span:nth-of-type(2) {
+	opacity: 0;
+}
+
+.openbtn.active span:nth-of-type(3){
+    top: 30px;
+    left: 18px;
+    transform: translateY(-6px) rotate(45deg);
+    width: 30%;
+}
+}
+/*------------------------------------------
+main fv
+------------------------------------------*/
+
+.sec__fv {
+
+  @include backGround;
+  overflow-x: hidden;
+  height: 100vh;
+
+
+  &__flontImg {
+    position: absolute;
+    // width: 550px;
+    width: clamp(25rem, 15.749rem + 19.87vw, 34.375rem);
+    // right: 20%;
+    right: clamp(1.875rem, -8.609rem + 22.52vw, 12.5rem);
+    bottom: 0;
+    z-index: 1;
+
+    @include max(m) {
+      width: 500px;
+      right: -20%;
+    }
+
+    @include max(xs) {
+      width: 500px;
+      right: -50%;
+    }
+  }
+
+  &__mainCatchCopy {
+    // font-size: 1000%;
+    font-size: clamp(6.25rem, 0.083rem + 13.25vw, 12.5rem);
+    position: absolute;
+    z-index: 2;
+    // top: 20vh;
+    top: clamp(6.25rem, 5.633rem + 1.32vw, 6.875rem);
+    color: $mainColor2;
+    transform: rotate(-10deg);
+    // left: 200px;
+    left: clamp(1.875rem, -8.609rem + 22.52vw, 12.5rem);
+    font-family: "Zen Kurenaido", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-shadow: 5px 5px 3px rgba(255, 255, 255, 0.46);
+
+    @include max(m) {
+      // font-size: 600%;
+      font-size: clamp(6.25rem, 0.083rem + 13.25vw, 12.5rem);
+      left: 5%;
+      top: 20vh;
+    }
+
+    @include max(xs) {
+      font-size: 500%;
+      top: 35vh;
+    }
+
+
+    &__span {
+      font-size: 70%;
+      color: $mainColor;
+    }
+  }
+
+  &__text1 {
+    position: absolute;
+    z-index: 2;
+    // bottom: 200px;
+    bottom: clamp(6.25rem, 0.083rem + 13.25vw, 12.5rem);
+    // font-size: 350%;
+    font-size: clamp(1.875rem, 0.642rem + 2.65vw, 3.125rem);
+    font-weight: bold;
+    color: $cWhite;
+    background-color: $cMainOpacity;
+    display: block;
+    padding: 20px 20px 15px 20px;
+
+    @include max(m) {
+      font-size: 200%;
+      bottom: 80px;
+    }
+
+    @include max(xs) {
+      font-size: 150%;
+    }
+  }
+
+  &__text2 {
+    position: absolute;
+    z-index: 2;
+    // bottom: 100px;
+    bottom: clamp(1.875rem, -2.442rem + 9.27vw, 6.25rem);
+    left: 15%;
+    // font-size: 350%;
+    font-size: clamp(1.875rem, 0.642rem + 2.65vw, 3.125rem);
+    font-weight: bold;
+    color: $cWhite;
+    background-color: $cMainOpacity;
+    display: block;
+    padding: 20px 20px 15px 20px;
+
+    @include max(m) {
+      font-size: 200%;
+      bottom: 10px;
+    }
+
+    @include max(xs) {
+      font-size: 150%;
+    }
+  }
+
+  &__entryButton {
+    position: absolute;
+    z-index: 3;
+    font-size: 150%;
+    top: 20vh;
+    height: 150px;
+    width: 150px;
+    background-color: $subColor2;
+    // right: 200px;
+    right: clamp(1.875rem, -8.609rem + 22.52vw, 12.5rem);
+    border-radius: 50%;
+    border: 5px solid $cWhite;
+    // transform: rotate(15deg);
+    rotate: 15deg;
+    box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.4);
+
+    @include max(m) {
+      top: 50vh;
+      left: 50px;
+      rotate: -15deg;
+    }
+
+    @include max(xs) {
+      top: 15vh;
+      left: 10px;
+    }
+
+
+    &__text {
+      position: absolute;
+      z-index: 4;
+      color: $cWhite;
+      font-weight: bold;
+      text-align: center;
+      line-height: 130px;
+      width: 120px;
+      height: 120px;
+      display: block;
+      border-radius: 50%;
+      border: 2px solid $cWhite;
+      @include positionArrangement;
+      text-decoration: none;
+      
+
+
+      &::before {
+        content: "> ";
+        font-size: 60%;
+        vertical-align: middle;
+      }
+
+      &::after {
+        content: " <";
+        font-size: 60%;
+        vertical-align: middle;
+      }
+
+    }
+  }
+}
+
+.entryTarget {
+  animation: floating-y 1.8s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes floating-y {
+  0% {
+    transform: translateY(-10%);
+  }
+  100% {
+    transform: translateY(10%);
+  }
+}
+
+/*------------------------------------------
+main concept
+------------------------------------------*/
+
+.sec__box1 {
+  width: 100%;
+  // height: 150vh;
+  height: clamp(75rem, 60.714rem + 28.57vw, 87.5rem);
+  @include backGroundColor;
+
+  @include max(m) {
+    height: 165vh;
+  }
+
+  @include max(xs) {
+    height: 190vh;
+  }
+}
+
+.sec__concept {
+  .ttl__white {
+    color: $cWhite;
+    font-size: 150%;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 150px;
+    position: relative;
+    z-index: 20;
+    @include max(m) {
+      font-size: 120%;
+      padding-top: 100px;
+    }
+
+
+    &::after {
+      content: "Concept";
+      color: $mainColor;
+      @include danceScript;
+      font-size: 500%;
+      opacity: 0.5;
+      position: absolute;
+      @include positionArrangement;
+      z-index: -1;
+      padding-top: 20px;
+
+      @include max(xs) {
+        font-size: 300%;
+      }
+
+    }
+  }
+
+  &__box {
+    margin-top: 90px;
+    // width: 40%;
+    width: clamp(37.5rem, 23.214rem + 28.57vw, 50rem);
+    @include marginCenter;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    position: relative;
+    z-index: 99;
+    color: $cBrack;
+
+    @include max(m) {
+      width: 90%;
+      font-size: 90%;
+      margin-top: 50px;
+    }
+
+    @include max(xs) {
+      width: 90%;
+      font-size: 80%;
+    }
+
+    &::after {
+      content: "";
+      background-color: $cWhiteOpacity;
+      display: block;
+      width: 90%;
+      height: 300px;
+      position: absolute;
+      @include borderR;
+      @include positionArrangement($left: 52%, $top: 54%, $translateX: -48%, $translateY: -46%);
+      z-index: -1;
+
+      @include max(xs) {
+        width: 95%;
+        height: 250px;
+      }
+    }
+
+    &::before {
+      content: "";
+      width: 90%;
+      height: 300px;
+      @include borderR;
+      border: 1px solid $mainColor;
+      display: block;
+      position: absolute;
+      @include positionArrangement($left: 48%, $top: 47%, $translateX: -52%, $translateY: -53%);
+
+      @include max(xs) {
+        width: 95%;
+        height: 250px;
+      }
+    }
+
+    &__text {
+      text-align: center;
+      margin-top: 15px;
+      line-height: 1.4em;
+      @include marginCenter;
+
+      .br__xs {
+        display: none;
+
+        @include max(m) {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+
+/*------------------------------------------
+main seek
+------------------------------------------*/
+
+.sec__seek {
+
+  @include max(m) {
+    width: 100%;
+  }
+
+  .ttl__white {
+    color: $cWhite;
+    font-size: 150%;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 150px;
+    position: relative;
+    z-index: 20;
+    margin-top: 70px;
+
+    @include max(m) {
+      font-size: 120%;
+      padding-top: 100px;
+    }
+
+    @include max(xs) {
+      // font-size: 90%;
+      margin-top: 40px;
+    }
+
+    &::after {
+      content: "Seek";
+      color: $mainColor;
+      @include danceScript;
+      font-size: 500%;
+      opacity: 0.5;
+      position: absolute;
+      @include positionArrangement;
+      z-index: -1;
+      padding-top: 20px;
+      // bottom: 2px;
+
+      @include max(xs) {
+        font-size: 300%;
+      }
+
+    }
+  }
+
+  &__container {
+    width: 70%;
+    @include marginCenter;
+    @include flex(space-between);
+    margin-top: 70px;
+
+    @include max(m) {
+      flex-direction: column;
+      width: 90%;
+    }
+
+    @include max(xs) {
+      margin-top: 10px;
+    }
+  }
+
+  &__textArea {
+    @include max(xs) {
+      @include flex;
+      width: 100%;
+      margin-top: 30px;
+    }
+  }
+
+  &__box {
+    width: 30%;
+
+    @include max(m) {
+      @include flex($center: space-between);
+      width: 90%;
+
+      &:nth-child(even) {
+        flex-direction: row-reverse;
+
+        @include max(xs) {
+        flex-direction: column;
+      }
+      }
+
+      @include max(xs) {
+        flex-direction: column;
+      }
+    }
+
+    &__number {
+      text-align: center;
+      color: $cWhite;
+      font-size: 300%;
+
+      @include max(xs) {
+        margin-right: 5%;
+      }
+    }
+
+    &__copy {
+      text-align: center;
+      font-size: 120%;
+      color: $cWhite;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    &__img {
+      // width: 300px;
+      width: clamp(9.375rem, -1.339rem + 21.43vw, 18.75rem);
+      // height: 300px;
+      height: clamp(9.375rem, -1.339rem + 21.43vw, 18.75rem);
+      @include marginCenter;
+      @include borderR(50%);
+      object-fit: cover;
+      overflow: hidden;
+
+      @include max(m) {
+        width: 200px;
+        height: 200px;
+      }
+
+    }
+  }
+}
+
+
+/*------------------------------------------
+main merit
+------------------------------------------*/
+
+.sec__merit {
+  // @include backGround(180vh);
+  width: 100%;
+
+  
+  .ttl__pink {
+    color: $mainColor;
+    font-size: 150%;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 150px;
+    position: relative;
+    z-index: 20;
+    // margin-top: 70px;
+    @include max(m) {
+      font-size: 120%;
+      padding-top: 100px;
+    }
+
+    &::after {
+      content: "Merit";
+      color: $mainColor;
+      @include danceScript;
+      font-size: 500%;
+      opacity: 0.3;
+      position: absolute;
+      @include positionArrangement;
+      z-index: -1;
+      padding-top: 20px;
+      // bottom: 2px;
+
+      @include max(xs) {
+        font-size: 300%;
+      }
+
+    }
+  }
+
+  .sec__merit1 {
+    &__box {
+      width: 80%;
+      @include flex($center: space-between);
+      flex-wrap: wrap;
+      margin-left: auto;
+      margin-right: auto;
+      gap: 20%;
+
+      &:nth-child(even) {
+        margin-top: 300px;
+      }
+    }
+
+    &__voiceBox {
+      @include flex;
+      background: $cWhite;
+      // width: 60%;
+      width: clamp(43.75rem, 29.464rem + 28.57vw, 56.25rem);
+      margin-top: 70px;
+      padding-top: 10px;
+      border: 1px solid $mainColor;
+      @include borderR;
+
+      &:nth-child(even) {
+        flex-direction: row-reverse;
+
+        @include max(m) {
+        width: 100%;
+        flex-direction: column;
+        }
+
+
+      }
+
+      @include max(m) {
+        width: 100%;
+        flex-direction: column;
+      }
+
+      @include max(xs) {
+        width: 100%;
+        
+      }
+    }
+
+    &__img {
+      width: 35%;
+    }
+
+    &__textBox {
+      width: 60%;
+      margin-left: 5%;
+      margin-right: 5%;
+
+      @include max(m) {
+        width: 80%;
+      }
+      &-h3 {
+        font-size: 150%;
+        margin-bottom: 30px;
+
+        @include max(m) {
+          text-align: center;
+          margin-top: 30px;
+          margin-bottom: 10px;
+        }
+      }
+
+      &-p {
+        line-height: 1.5em;
+
+        @include max(m) {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+
+  .voiceBox__right {
+    margin-top: 80px;
+    // margin-left: 40%;
+    margin-left: clamp(0rem, -28.571rem + 57.14vw, 25rem);
+
+    .sec__merit1__img {
+      width: 25%;
+      margin-left: 5%;
+      margin-right: 5%;
+    }
+  }
+
+.sec__merit1__container {
+  position: relative;
+  width: 100%;
+}
+
+.sec__merit1 {
+  &__bgLeft {
+    position: absolute;
+    // width: 50%;
+    width: clamp(25rem, -10.714rem + 71.43vw, 56.25rem);
+    height: 300px;
+    background: $cSubOpacity;
+    z-index: -1;
+    top: 200px;
+  }
+
+  &__bgRight {
+    position: absolute;
+    // width: 50%;
+    width: clamp(25rem, -37.5rem + 125vw, 56.25rem);
+    height: 300px;
+    background: $cSubOpacity;
+    z-index: -1;
+    top: 700px;
+    right: 0;
+  }
+}
+
+
+
+/*------------------------------------------
+main merit22
+------------------------------------------*/
+  
+
+  .ttl2__pink {
+    color: $mainColor;
+    font-size: 150%;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 150px;
+    position: relative;
+    z-index: 20;
+    margin-top: 0px;
+
+    @include max(m) {
+      padding-top: 100px;
+    }
+  }
+
+  .sec__merit2 {
+    &__container {
+      // width: 80%;
+      width: clamp(50rem, 35.714rem + 28.57vw, 62.5rem);
+      @include marginCenter;
+      @include flex(space-between);
+
+      @include max(m) {
+      flex-direction: column;
+      width: 100%;
+    }
+    }
+
+    &__box {
+      // width: 30%;
+      width: clamp(18.75rem, 11.607rem + 14.29vw, 25rem);
+      position: relative;
+      margin-top: -50px;
+
+      @include max(m) {
+      width: 100%;
+    }
+
+      &__imgBox {
+      width: 150px;
+      height: 150px;
+      @include borderR(50%);
+      background: $cWhite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      @include positionArrangement($top:40%, $translateY:-60%);
+      
+      
+      
+      
+      &-img {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        
+      }
+      }
+
+      &__textBox {
+        width: 80%;
+        background: $mainColor;
+        color: $cWhite;
+        padding-top: 100px;
+        padding-left: 5%;
+        padding-right: 5%;
+        margin-top: 150px;
+        height: 200px;
+        @include marginCenter;
+        @include borderR;
+
+        @include max(m) {
+          width: 80%;
+          height: 150px;
+        }
+
+        &-ttl {
+          margin-top: 30px;
+          font-weight: bold;
+          font-size: 180%;
+          text-align: center;
+          margin-bottom: 30px;
+
+          @include max(m) {
+            font-size: 120%;
+            margin-top: 10px;
+          }
+        }
+
+        &-text {
+          line-height: 1.3em;
+
+          @include max(m) {
+            font-size: 100%;
+          }
+
+        }
+      }
+    }
+
+  }
+}
+
+
+/*------------------------------------------
+main Requirements
+------------------------------------------*/
+
+
+
+.sec__req {
+
+  
+  width: 100%;
+  height: 120vh;
+  @include backGroundColor;
+  padding-top: 100px;
+
+  clip-path: polygon(0 0, 100% 0%, 100% 90%, 50% 100%, 0 90%);
+  margin-top: 100px;
+
+  @include max(m) {
+    clip-path: polygon(0 0, 100% 0%, 100% 90%, 50% 100%, 0 90%);
+    padding-top: 50px;
+    height: 105vh;
+  }
+
+  @include max(xs) {
+    padding-top: 10px;
+    height: 115vh;
+  }
+
+  .ttl__white {
+    color: $cWhite;
+    font-size: 150%;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 150px;
+    position: relative;
+    @include positionArrangement($top:10%, $translateY:-90%);
+    z-index: 20;
+    // margin-top: 70px;
+
+    @include max(m) {
+      font-size: 120%;
+      padding-top: 100px;
+    }
+
+    &::after {
+      content: "Requirements";
+      color: $mainColor;
+      @include danceScript;
+      font-size: 500%;
+      opacity: 0.3;
+      position: absolute;
+      @include positionArrangement;
+      z-index: -1;
+      padding-top: 20px;
+      // bottom: 2px;
+
+      @include max(xs) {
+        font-size: 300%;
+      }
+    }
+  }
+}
+
+.sec__req {
+  &__table {
+    width: 100%;
+    max-width: 700px;
+    @include marginCenter;
+    border-collapse: separate;
+    border-spacing: 5px;
+    height: auto;
+    margin-top: 30px;
+
+    @include max(m) {
+      width: 90%;
+    }
+
+    @include max(xs) {
+      margin-top: 10px;
+      width: 90%;
+    }
+    
+
+    &-tr {
+      margin-bottom: 2px;
+    }
+
+    &-th {
+      width: 20%;
+      vertical-align: middle;
+      background: $mainColor;
+      @include borderR;
+
+      @include max(xs) {
+        display: block;
+        width: 100%;
+        height: 30px;
+      }
+
+      h3 {
+        color: $cWhite;
+        font-weight: bold;
+        font-size: 120%;
+        letter-spacing: 0.3em;
+
+        @include max(m) {
+          font-size: 110%;
+          letter-spacing: 0.1em;
+        }
+
+        @include max(xs) {
+          line-height: 30px;
+        }
+      }
+    }
+
+    &-td {
+      width: 70%;
+      background: $cWhite;
+      border: 2px solid $cMainOpacity(0);
+      padding: 20px 5% 0 5%;
+
+      @include max(m) {
+        padding-bottom: 10px;
+      }
+
+      @include max(xs) {
+        display: block;
+        width: 87%;
+        margin-bottom: 10px;
+        padding-left: 8%;
+      }
+    }
+
+    &-ul .sec__req__box__text-list {
+      list-style-type: disc;
+    }
+
+    &-ol .sec__req__box__text-list {
+      list-style-type: decimal;
+    }
+  }
+
+  &__box__text-list {
+    line-height: 1.2em;
+    margin-bottom: 20px;
+
+    @include max(m) {
+      font-size: 90%;
+      margin-bottom: 10px;
+    }
+
+    @include max(xs) {
+      font-size: 80%;
+    }
+  }
+}
+
+
+
+/*------------------------------------------
+main Entry
+------------------------------------------*/
+
+.sec__entry {
+  .ttl__pink {
+    color: $mainColor;
+    font-size: 150%;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 150px;
+    position: relative;
+    z-index: 20;
+    // margin-top: 70px;
+
+    @include max(m) {
+      font-size: 120%;
+      padding-top: 100px;
+    }
+
+    &::after {
+      content: "Entry";
+      color: $mainColor;
+      @include danceScript;
+      font-size: 500%;
+      opacity: 0.3;
+      position: absolute;
+      @include positionArrangement;
+      z-index: -1;
+      padding-top: 20px;
+      // bottom: 2px;
+
+      @include max(xs) {
+        font-size: 300%;
+      }
+    }
+  }
+
+  &__container {
+    width: 90%;
+    max-width: 700px;
+    background: $subColor;
+    @include marginCenter;
+    margin-top: 30px;
+    padding: 50px 5%;
+    @include borderR;
+
+    @include max(xs) {
+      margin-top: 10px
+    }
+  }
+}
+
+.Form-Item {
+  @include flex;
+  margin-bottom: 20px;
+
+  @include max(m) {
+      width: 80%;
+      @include marginCenter;
+      margin-bottom: 10px;
+      margin-top: 30px;
+    }
+
+    @include max(xs) {
+      width: 90%;
+    }
+
+  &-Label {
+    // line-height: 1.2em;
+    width: 30%;
+    text-align: left;
+
+    @include max(m) {
+      width: 100%;
+      margin-bottom: 10px;
+      font-size: 90%;
+    }
+
+    
+
+    &-Required {
+      background: $subColor2;
+      color: $cWhite;
+      font-size: 70%;
+      padding: 2px;
+      line-height: 1.2em;
+      margin-left: 5%;
+      @include borderR;
+    }
+  }
+
+  .wpcf7-form-control-wrap {
+    width: 100%;
+    // line-height: 2em;
+  }
+
+  .wpcf7-form-control {
+    line-height: 50px;
+    width: 100%;
+    display: block;
+    border: none;
+  }
+
+  .wpcf7-textarea {
+    line-height: 30px;
+  }
+
+  .wpcf7-radio {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wpcf7-list-item {
+
+    @include max(m) {
+      line-height: 1.5em;
+    }
+  }
+
+  .wpcf7-list-item-label {
+    
+    @include max(m) {
+      font-size: 90%;
+      line-height: 0.1em;
+    }
+  }
+}
+
+
+
+input[type="radio"] {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  border: 1px solid $mainColor;
+  background: $cWhite;
+  border-radius: 50%;
+  vertical-align: -2px;
+  -webkit-appearance: none;
+    -moz-appearance: none;
+          appearance: none;
+}
+
+input[type="radio"]:checked:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: $mainColor;
+  content: '';
+}
+
+
+
+.button-wrap {
+  .wpcf7-form-control {
+    width: 20%;
+    background: $mainColor;
+    border: none;
+    font-size: 200%;
+    color: $cWhite;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    @include marginCenter;
+    margin-top: 50px;
+    letter-spacing: 0.2em;
+  }
+}
+
+.contact-btn {
+  width: 150px;
+    background: $mainColor;
+    border: none;
+    font-size: 200%;
+    color: $cWhite;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    @include marginCenter;
+    margin-top: 50px;
+    letter-spacing: 0.2em;
+}
+
+
+/*------------------------------------------
+footer
+------------------------------------------*/
+
+.footer_copyRight {
+  width: 100%;
+  text-align: center;
+  color: $mainColor;
+  line-height: 90px;
+}
+
+
+
+/*------------------------------------------
+fade animation
+------------------------------------------*/
+/* fadeUp */
+.fadeUp {
+  animation: fadeUpAnime 0.8s forwards;  /* fadeUpAnimeを0.8秒で一回実行 */
+  opacity: 0;
+}
+
+
+/* fadeCross */
+.fadeCross {
+  animation: fadeCrossAnime 0.8s forwards;  /* fadeUpAnimeを0.8秒で一回実行 */
+  opacity: 0;
+  overflow: hidden;
+}
+
+
+.fadeUpTrigger,
+.fadeCrossTrigger { 
+  opacity: 0;  /* 初めは見えないようにしておく */
+}
+
+
+/* fadeUp */
+@keyframes fadeUpAnime { 
+  from { 
+    opacity: 0; /* 初めは見えないようにしておく */ 
+    transform: translateY(100px);  /* 100px下に動かしておく */ 
+  } 
+
+  to { 
+    opacity: 1;  /* 可視化する */ 
+    transform: translateY(0);  /* 元の位置に戻す */ 
+  }
+} 
+
+
+/* fadeCross */
+@keyframes fadeCrossAnime { 
+  from {
+    opacity: 0;
+    transform: rotateY(45deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotateY(0);
+  }
+} 
+
