@@ -305,8 +305,8 @@ main fv
     z-index: 1;
 
     @include max(xl) {
-      width: 80%;
-      right: -20%;
+      width: 500px;
+      right: -10%;
     }
 
     @include max(m) {
@@ -327,7 +327,7 @@ main fv
     font-size: clamp(6.25rem, 0.083rem + 13.25vw, 12.5rem);
     position: absolute;
     z-index: 2;
-    top: 20vh;
+    top: 15vh;
     // top: clamp(6.25rem, 5.633rem + 1.32vw, 6.875rem);
     color: $mainColor2;
     transform: rotate(-10deg);
@@ -848,164 +848,108 @@ main merit
   .sec__merit1 {
     &__box {
       width: 80%;
-      @include flex($center: space-between);
-      flex-wrap: wrap;
-      margin-left: auto;
-      margin-right: auto;
-      gap: 20%;
+      height: 700px;
+      @include marginCenter;
+      position: relative;
 
       @include max(m) {
+        position: static;
+        height: auto;
         width: 90%;
       }
 
-      &:nth-child(even) {
-        margin-top: 300px;
+      .voiceBox__left {
+        position: absolute;
+        left: 0;
+        z-index: 1;
+        top: 30px;
+
+        @include max(m) {
+          position: static;
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      .voiceBox__right {
+        position: absolute;
+        right: 0;
+        z-index: 1;
+        top: 400px;
+
+        @include max(m) {
+          position: static;
+          width: 100%;
+          height: auto;
+        }
+
+        .sec__merit1__img {
+          width: 220px;
+        }
       }
     }
 
     &__voiceBox {
-      @include flex;
       background: $cWhite;
-      // width: 60%;
-      width: clamp(43.75rem, 29.464rem + 28.57vw, 56.25rem);
-      margin-top: 70px;
-      padding-top: 10px;
-      border: 1px solid $mainColor;
       @include borderR;
+      border: 1px solid $mainColor;
+      width: 60%;
+      @include flex;
+      padding-top: 10px;
 
       &:nth-child(even) {
         flex-direction: row-reverse;
 
         @include max(m) {
-        width: 100%;
         flex-direction: column;
-        }
-
-
+      }
       }
 
       @include max(xl) {
-        width: 100%;
+        width: 90%;
       }
 
       @include max(m) {
-        width: 100%;
         flex-direction: column;
-      }
-
-      @include max(xs) {
-        width: 100%;
-        
-      }
-    }
-
-    &__img {
-      width: 35%;
-
-      @include max(xs) {
-        width: 50%;
+        margin-top: 30px;
       }
     }
 
     &__textBox {
-      width: 60%;
-      margin-left: 5%;
-      margin-right: 5%;
-
-      @include max(m) {
-        width: 80%;
-      }
-
-      @include max(xs) {
-        width: 95%;
-      }
-
-      &-h3 {
-        font-size: 150%;
-        margin-bottom: 30px;
-        color: $mainColor;
-        font-weight: bold;
+        width: 50%;
 
         @include max(m) {
-          text-align: center;
-          margin-top: 30px;
-          margin-bottom: 10px;
+          width: 90%;
+          @include marginCenter;
+        }
+        
+
+        &-h3 {
+          font-size: 150%;
+          font-weight: bold;
+          color: $mainColor;
+          margin-bottom: 30px;
+
+          @include max(m) {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 140%;
+            margin-bottom: 10px;
+          }
         }
 
-        @include max(xs) {
-          font-size: 120%;
-          margin-top: 10px;
+        &-p {
+          text-align: justify;
+          line-height: 1.2em;
+          padding-bottom: 10px;
+
+          @include max(m) {
+            font-size: 90%;
+          }
         }
       }
-
-      &-p {
-        line-height: 1.5em;
-
-        @include max(m) {
-          margin-bottom: 10px;
-        }
-
-        @include max(xs) {
-          width: 100%;
-          font-size: 90%;
-        }
-      }
-    }
   }
 
-  .voiceBox__right {
-    margin-top: 80px;
-    // margin-left: 40%;
-    margin-left: clamp(25rem, 10.714rem + 28.57vw, 37.5rem);
-
-    @include max(xl) {
-          width: 100%;
-          margin-left: 0;
-        }
-
-    @include max(m) {
-      width: 100%;
-      margin-left: 0;
-    }
-
-    .sec__merit1__img {
-      width: 25%;
-      margin-left: 5%;
-      margin-right: 5%;
-
-      @include max(xs) {
-        width: 35%;
-      }
-    }
-  }
-
-.sec__merit1__container {
-  position: relative;
-  width: 100%;
-}
-
-.sec__merit1 {
-  &__bgLeft {
-    position: absolute;
-    // width: 50%;
-    width: clamp(25rem, -10.714rem + 71.43vw, 56.25rem);
-    height: 300px;
-    background: $cSubOpacity;
-    z-index: -1;
-    top: 200px;
-  }
-
-  &__bgRight {
-    position: absolute;
-    // width: 50%;
-    width: clamp(25rem, -37.5rem + 125vw, 56.25rem);
-    height: 300px;
-    background: $cSubOpacity;
-    z-index: -1;
-    top: 700px;
-    right: 0;
-  }
-}
 
 
 
@@ -1031,10 +975,11 @@ main merit22
 
   .sec__merit2 {
     &__container {
-      // width: 80%;
-      width: clamp(50rem, 35.714rem + 28.57vw, 62.5rem);
+      width: 80%;
+      // width: clamp(50rem, 35.714rem + 28.57vw, 62.5rem);
       @include marginCenter;
       @include flex(space-between);
+      position: relative;
 
       @include max(m) {
       flex-direction: column;
@@ -1127,11 +1072,11 @@ main Requirements
 
 .sec__req {
 
-  
+
   width: 100%;
   height: 120%;
   @include backGroundColor;
-  padding-top: 8%;
+  padding-top: 10%;
   padding-bottom: 10%;
 
   clip-path: polygon(0 0, 100% 0%, 100% 90%, 50% 100%, 0 90%);
@@ -1342,8 +1287,9 @@ main Entry
   }
 
   &__container {
-    width: 90%;
-    max-width: 700px;
+    // width: 90%;
+    // max-width: 700px;
+    width: min(700px, 90%);
     background: $subColor;
     @include marginCenter;
     margin-top: 30px;
@@ -1356,143 +1302,153 @@ main Entry
   }
 }
 
-.Form-Item {
-  @include flex;
-  margin-bottom: 20px;
+
+.contact-wrapper__block {
+  display: flex;
+  justify-content: space-between;
+}
+
+.contact-wrapper__block__left {
+  width: 40%;
+  line-height: 1.8;
+  font-size: 1.25rem;
+}
+
+.contact-wrapper__block__right {
+  position: relative;
+  // background: url(../img/contact.png) no-repeat center;
+  // background-size: cover;
+  width: 50%;
+}
+
+.contact-wrapper__form {
+  width: 100%;
+  // margin: 10% auto;
+}
+
+.contact-wrapper__form__box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto 5%;
 
   @include max(m) {
-      width: 80%;
-      @include marginCenter;
-      margin-bottom: 10px;
-      margin-top: 30px;
-    }
-
-    @include max(xs) {
-      width: 90%;
-    }
-
-  &-Label {
-    // line-height: 1.2em;
-    width: 30%;
-    text-align: left;
-
-    @include max(m) {
-      width: 100%;
-      margin-bottom: 10px;
-      font-size: 90%;
-    }
-
-    
-
-    &-Required {
-      background: $subColor2;
-      color: $cWhite;
-      font-size: 70%;
-      padding: 2px;
-      line-height: 1.2em;
-      margin-left: 5%;
-      @include borderR;
-    }
-  }
-
-  .wpcf7-form-control-wrap {
-    width: 100%;
-    // line-height: 2em;
-  }
-
-  .wpcf7-form-control {
-    line-height: 50px;
-    width: 100%;
-    display: block;
-    border: none;
-  }
-
-  .wpcf7-textarea {
-    line-height: 30px;
-  }
-
-  .wpcf7-radio {
-    display: flex;
     flex-direction: column;
   }
-
-  .wpcf7-list-item {
-
-    @include max(m) {
-      line-height: 1.5em;
-    }
-  }
-
-  .wpcf7-list-item-label {
-    
-    @include max(m) {
-      font-size: 90%;
-      line-height: 0.1em;
-    }
-  }
 }
 
+.contact-wrapper__form__box.__area {
+  align-items: baseline;
+}
 
-
-input[type="radio"] {
+.contact-wrapper__form__box__ttl {
+  width: 40%;
+  height: 100%;
+  font-size: 1.15rem;
   position: relative;
-  width: 16px;
-  height: 16px;
-  border: 1px solid $mainColor;
-  background: $cWhite;
-  border-radius: 50%;
-  vertical-align: -2px;
-  -webkit-appearance: none;
-    -moz-appearance: none;
-          appearance: none;
+
+  @include max(m) {
+    width: 90%;
+    margin-top: 20px;
+  }
 }
 
-input[type="radio"]:checked:before {
+.contact-wrapper__form__box__ttl::after {
+  content: "必須";
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: $mainColor;
-  content: '';
-}
+  left: 67.5%;
+  transform: translateY(-50%) translateX(-50%);
+  text-align: center;
+  width: 25%;
+  line-height: 2.5;
+  font-size: 0.85rem;
+  color: $cWhite;
+  background: $subColor2;
+  border-radius: 2px;
 
 
+  @include max(m) {
+    left: 30%;
+    padding: 1px 2%;
+    width: auto;
+    line-height: normal;
+  }
 
-.button-wrap {
-  .wpcf7-form-control {
-    width: 20%;
-    background: $mainColor;
-    border: none;
-    font-size: 200%;
-    color: $cWhite;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    @include marginCenter;
-    margin-top: 50px;
-    letter-spacing: 0.2em;
+  @include max(xs) {
+    width: auto;
+    line-height: normal;
+    // padding-left: 2%;
+    // padding-right: 2%;
+    padding: 1px 2%;
+    left: 50%;
   }
 }
+
+
+
+.contact-wrapper__form__box__input,
+.contact-wrapper__form__box__area {
+  height: 3rem;
+  width: 70%;
+  padding-left: 5px;
+  font-size: 1rem;
+
+  @include max(m) {
+    width: 90%;
+    margin-top: 5px;
+  }
+}
+
+// .contact-wrapper__form__box__select {
+//   width: 72.5%;
+//   height: 4.5rem;
+// }
+
+.contact-wrapper__form__box__radio {
+  height: 3rem;
+  width: 70%;
+  padding-left: 5px;
+  font-size: 1rem;
+}
+
+.contact-wrapper__form__box__area {
+  height: 15rem;
+  padding: 12.5px 5px;
+}
+
+.radio__block {
+  line-height: 2.5em;
+
+    input {
+      // background: $mainColor;
+      accent-color: #ff0000;
+      // block-size: 1.5rem;
+      position: relative;
+      top: -4px;
+    }
+}
+
 
 .contact-btn {
   width: 150px;
-    // background: $mainColor;
+//     // background: $mainColor;
     border: none;
     font-size: 200%;
     color: $mainColor;
     padding-top: 10px;
     padding-bottom: 10px;
     @include marginCenter;
-    margin-top: 50px;
     letter-spacing: 0.2em;
     line-height: 2em;
+    margin-top: 150px;
 
 
           transition: .3s;
           font-weight: bold;
           position: relative;
+          bottom: 10px;
           padding: 0 10px;
           // position: relative;
           z-index: 1;
@@ -1520,6 +1476,181 @@ input[type="radio"]:checked:before {
             }
           }
         }
+
+// .contact-btn:hover {
+//   color: #000;
+//   background: #fff;
+//   transition: 0.75s;
+// }
+
+
+
+
+
+// .Form-Item {
+//   @include flex;
+//   margin-bottom: 20px;
+
+//   @include max(m) {
+//       width: 80%;
+//       @include marginCenter;
+//       margin-bottom: 10px;
+//       margin-top: 30px;
+//     }
+
+//     @include max(xs) {
+//       width: 90%;
+//     }
+
+//   &-Label {
+//     // line-height: 1.2em;
+//     width: 30%;
+//     text-align: left;
+
+//     @include max(m) {
+//       width: 100%;
+//       margin-bottom: 10px;
+//       font-size: 90%;
+//     }
+
+    
+
+//     &-Required {
+//       background: $subColor2;
+//       color: $cWhite;
+//       font-size: 70%;
+//       padding: 2px;
+//       line-height: 1.2em;
+//       margin-left: 5%;
+//       @include borderR;
+//     }
+//   }
+
+//   .wpcf7-form-control-wrap {
+//     width: 100%;
+//     // line-height: 2em;
+//   }
+
+//   .wpcf7-form-control {
+//     line-height: 50px;
+//     width: 100%;
+//     display: block;
+//     border: none;
+//   }
+
+//   .wpcf7-textarea {
+//     line-height: 30px;
+//   }
+
+//   .wpcf7-radio {
+//     display: flex;
+//     flex-direction: column;
+//   }
+
+//   .wpcf7-list-item {
+
+//     @include max(m) {
+//       line-height: 1.5em;
+//     }
+//   }
+
+//   .wpcf7-list-item-label {
+    
+//     @include max(m) {
+//       font-size: 90%;
+//       line-height: 0.1em;
+//     }
+//   }
+// }
+
+
+
+// input[type="radio"] {
+//   position: relative;
+//   width: 16px;
+//   height: 16px;
+//   border: 1px solid $mainColor;
+//   background: $cWhite;
+//   border-radius: 50%;
+//   vertical-align: -2px;
+//   -webkit-appearance: none;
+//     -moz-appearance: none;
+//           appearance: none;
+// }
+
+// input[type="radio"]:checked:before {
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   width: 9px;
+//   height: 9px;
+//   border-radius: 50%;
+//   background: $mainColor;
+//   content: '';
+// }
+
+
+
+// .button-wrap {
+//   .wpcf7-form-control {
+//     width: 20%;
+//     background: $mainColor;
+//     border: none;
+//     font-size: 200%;
+//     color: $cWhite;
+//     padding-top: 10px;
+//     padding-bottom: 10px;
+//     @include marginCenter;
+//     margin-top: 50px;
+//     letter-spacing: 0.2em;
+//   }
+// }
+
+// .contact-btn {
+//   width: 150px;
+//     // background: $mainColor;
+//     border: none;
+//     font-size: 200%;
+//     color: $mainColor;
+//     padding-top: 10px;
+//     padding-bottom: 10px;
+//     @include marginCenter;
+//     margin-top: 50px;
+//     letter-spacing: 0.2em;
+//     line-height: 2em;
+
+
+//           transition: .3s;
+//           font-weight: bold;
+//           position: relative;
+//           padding: 0 10px;
+//           // position: relative;
+//           z-index: 1;
+//           box-sizing: border-box;
+
+//           overflow: hidden;
+
+//           &::after {
+//             position: absolute;
+//             content: '';
+//             right: 0%;
+//             width: 300%;
+//             height: 100%;
+//             background: linear-gradient(to left, #fff 34%,$subColor 34%,$subColor 66%,$mainColor 66%);
+//             z-index: -1;
+//             transition: 0.6s;
+//           }
+
+//           &:hover {
+//             color: $cWhite;
+//             cursor: pointer;
+
+//             &::after {
+//               right: -200%;
+//             }
+//           }
+//         }
 
 
 /*------------------------------------------

@@ -127,7 +127,7 @@
 
           <div class="sec__merit1__box">
 
-            <div class="sec__merit1__voiceBox fadeCrossTrigger">
+            <div class="sec__merit1__voiceBox fadeCrossTrigger voiceBox__left">
               <img src="img/merito_01.png" class="sec__merit1__img">
               <div class="sec__merit1__textBox">
                 <h3 class="sec__merit1__textBox-h3">働くママさんスタッフ</h3>
@@ -265,72 +265,63 @@
         <section class="sec__entry" id="entry">
           <h2 class="sec__entry__ttl ttl__pink">エントリーフォーム</h2>
 
-          <form>
           <div class="sec__entry__container fadeUpTrigger">
-            <div class="Form">
-              <!-- 名前input -->
-              <div class="Form-Item">
-                <p class="Form-Item-Label">名前<span class="Form-Item-Label-Required">必須</span></p>
-                <span class="wpcf7-form-control-wrap text-xxx">
-                  <input type="text" name="your_name" class="wpcf7-form-control wpcf7-text" aria-invalid="false" placeholder="例）山田太郎">
-                </span>
+
+            <form action="../mail.php" id="form" method="POST" class="contact-wrapper__form">
+              
+              <div class="contact-wrapper__form__box">
+                <label for="name" class="contact-wrapper__form__box__ttl">お名前（漢字）</label>
+                <input type="text" class="contact-wrapper__form__box__input" name="お名前（漢字）" required="required" placeholder="お名前をご入力下さい">
               </div>
-    <!-- 電話番号input -->
-    <div class="Form-Item">
-      <p class="Form-Item-Label">電話番号<span class="Form-Item-Label-Required">必須</span></p>
-      <span class="wpcf7-form-control-wrap tel-xxx">
-        <input type="tel" name="tel" class="wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-tel" aria-invalid="false" placeholder="例）000-0000-0000">
-    </span>
-    </div>
-    <!-- メールアドレスinput -->
-    <div class="Form-Item">
-      <p class="Form-Item-Label">E-mailアドレス<span class="Form-Item-Label-Required">必須</span></p>
-      <span class="wpcf7-form-control-wrap email-xxx">
-        <input type="email" name="email" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-email" aria-invalid="false" placeholder="例）example@gmail.com">
-    </span>
-    </div>
-    <div class="Form-Item">
-      <p class="Form-Item-Label isMsg">指導経験<span class="Form-Item-Label-Required">必須</span></p>
-      <span class="wpcf7-form-control-wrap textarea-xxx">
-        <textarea name="textarea-xxx" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false" placeholder="例）2020年10月～2024年3月ヨガ教室指導"></textarea>
-    </span>
-    </div>
-    <!-- ラジオボタン -->
-    <div class="Form-Item">
-      <p class="Form-Item-Label">希望クラス<span class="Form-Item-Label-Required">必須</span></p>
-      <span class="wpcf7-form-control-wrap radio-xxx">
-        <span class="wpcf7-form-control wpcf7-radio">
-            <span class="wpcf7-list-item first">
-                <input type="radio" name="radio-xxx" value="選択技1" checked="checked">
-                <span class="wpcf7-list-item-label">ピラティス講座</span>
-            </span>
-            <span class="wpcf7-list-item">
-                <input type="radio" name="radio-xxx" value="選択技2">
-                <span class="wpcf7-list-item-label">ヨガ講座</span>
-            </span>
-            <span class="wpcf7-list-item last">
-                <input type="radio" name="radio-xxx" value="選択技3">
-                <span class="wpcf7-list-item-label">フラダンス講座</span>
-            </span>
-            <span class="wpcf7-list-item last">
-                <input type="radio" name="radio-xxx" value="選択技3">
-                <span class="wpcf7-list-item-label">ベリーダンス講座</span>
-            </span>
-        </span>
-    </span>
-    </div>
-    
-    
-    <div class="button-wrap">
-      <!-- <input type="submit" value="Entry" class="wpcf7-form-control wpcf7-submit">
-      <span class="ajax-loader"></span> -->
-      <button type="submit" class="btn contact-btn">Entry</button>
-    </div>
-  </div>
+
+              <div class="contact-wrapper__form__box">
+                <label for="email" class="contact-wrapper__form__box__ttl">電話番号</label>
+                <input type="tel" class="contact-wrapper__form__box__input" name="電話番号" required="required" placeholder="例）000-0000-0000">
+              </div>
+
+              <div class="contact-wrapper__form__box">
+                <label for="email" class="contact-wrapper__form__box__ttl">メールアドレス</label>
+                <input type="email" class="contact-wrapper__form__box__input" name="メールアドレス" required="required" placeholder="例）example@example.com">
+              </div>
+
+              <div class="contact-wrapper__form__box _area">
+                <label for="message" class="contact-wrapper__form__box__ttl">指導経験</label>
+                <textarea name="指導経験" class="contact-wrapper__form__box__area" id="message" required="required" placeholder="今までの指導経験について記入をお願い致します"></textarea>
+              </div>
+
+              <div class="contact-wrapper__form__box">
+                <label for="name" class="contact-wrapper__form__box__ttl">希望クラス</label>
+                <div class="contact-wrapper__form__box__radio">
+
+                  <div class="radio__block">
+                    <input type="radio" id="classChoice1" name="class" value="pilates" />
+                    <label for="classChoice1">ピラティス講座</label>
+                  </div>
+
+                  <div class="radio__block">
+                    <input type="radio" id="classChoice2" name="class" value="yoga" />
+                    <label for="classChoice2">ヨガ講座</label>
+                  </div>
+
+                  <div class="radio__block">
+                    <input type="radio" id="classChoice3" name="class" value="hula dance" />
+                    <label for="classChoice3">フラダンス</label>
+                  </div>
+
+                  <div class="radio__block">
+                    <input type="radio" id="classChoice4" name="class" value="belly dance" />
+                    <label for="classChoice4">ベリーダンス</label>
+                  </div>
+                </div>
+
+              </div>
+
+              <button type="submit" class="btn contact-btn">Entry</button>
+            </form>
           </div>
-</form>
         </section>
     </main>
+
     <footer>
       <p class="footer_copyRight">©2024 Peach Studio</p>
     </footer>
