@@ -56,3 +56,27 @@
 @mixin borderR ($radius:2px){
   border-radius: $radius;
 }
+
+@mixin ttl($color: $cWhite) {
+  color: $color;
+  font-size: 150%;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 150px;
+  // padding-bottom: 50px;
+  position: relative;
+  z-index: 20;
+}
+
+@mixin ttlAfter {
+      
+      color: $mainColor;
+      @include danceScript;
+      font-size: 500%;
+      opacity: 0.5;
+      position: absolute;
+      @include positionArrangement;
+      z-index: -1;
+      padding-top: 20px;
+      padding-bottom: 50px;
+  }

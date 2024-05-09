@@ -297,27 +297,30 @@ main fv
 
   &__flontImg {
     position: absolute;
-    width: 30%;
+    width: min(600px, 40%);
     // width: clamp(36.875rem, 36.363rem + 0.91vw, 37.5rem);
-    right: 20%;
+    // right: 20%;
+    left: min(1100px, 60%);
     // right: clamp(-37.5rem, -95.192rem + 307.69vw, -12.5rem);
     bottom: 0;
     z-index: 1;
 
     @include max(xl) {
-      width: 500px;
-      right: -10%;
+      width: max(700px, 50%);
+      // right: -10%;
+      left: min(500px, 70%);
     }
 
     @include max(m) {
-      width: 500px;
-      right: -20%;
+      width: max(600px, 50%);
+      // right: -20%;
+      left: min(500px, 40%);
     }
 
     @include max(xs) {
-      // width: 500px;
-      width: clamp(6.25rem, -65.865rem + 384.62vw, 37.5rem);
-      right: -40%;
+      width: max(400px, 100%);
+      // width: clamp(6.25rem, -65.865rem + 384.62vw, 37.5rem);
+      left: min(100px, 20%);
       // right: clamp(-6.25rem, -7.692rem + 7.69vw, -5.625rem);
     }
   }
@@ -353,7 +356,8 @@ main fv
 
     @include max(xs) {
       font-size: 500%;
-      top: 40vh;
+      // top: 40vh;
+      top: max(30vh, 50%);
     }
 
 
@@ -378,7 +382,8 @@ main fv
 
     @include max(xl) {
       font-size: 400%;
-      bottom: 170px;
+      // bottom: 170px;
+      bottom: max(180px, 20%);
     }
 
     @include max(m) {
@@ -408,6 +413,7 @@ main fv
 
     @include max(xl) {
       font-size: 400%;
+      bottom: max(100px, 10%);
     }
 
     @include max(m) {
@@ -538,40 +544,25 @@ main concept
 }
 
 .sec__concept {
+  
   .ttl__white {
-    color: $cWhite;
-    font-size: 150%;
-    font-weight: bold;
-    text-align: center;
-    padding-top: 150px;
-    position: relative;
-    z-index: 20;
-    @include max(m) {
-      font-size: 120%;
-      padding-top: 100px;
-    }
 
+    @include ttl;
 
     &::after {
+      @include ttlAfter;
       content: "Concept";
-      color: $mainColor;
-      @include danceScript;
-      font-size: 500%;
-      opacity: 0.5;
-      position: absolute;
-      @include positionArrangement;
-      z-index: -1;
-      padding-top: 20px;
 
       @include max(xs) {
         font-size: 300%;
       }
-
     }
   }
 
+
   &__box {
     margin-top: 90px;
+    margin-bottom: 100px;
     // width: 40%;
     width: clamp(37.5rem, 23.214rem + 28.57vw, 50rem);
     @include marginCenter;
@@ -653,15 +644,11 @@ main seek
     width: 100%;
   }
 
+
+  
+
   .ttl__white {
-    color: $cWhite;
-    font-size: 150%;
-    font-weight: bold;
-    text-align: center;
-    padding-top: 150px;
-    position: relative;
-    z-index: 20;
-    margin-top: 70px;
+    @include ttl;
 
     @include max(m) {
       font-size: 120%;
@@ -675,15 +662,7 @@ main seek
 
     &::after {
       content: "Seek";
-      color: $mainColor;
-      @include danceScript;
-      font-size: 500%;
-      opacity: 0.5;
-      position: absolute;
-      @include positionArrangement;
-      z-index: -1;
-      padding-top: 20px;
-      // bottom: 2px;
+      @include ttlAfter;
 
       @include max(xs) {
         font-size: 300%;
@@ -813,14 +792,9 @@ main merit
 
   
   .ttl__pink {
-    color: $mainColor;
-    font-size: 150%;
-    font-weight: bold;
-    text-align: center;
-    padding-top: 150px;
-    position: relative;
-    z-index: 20;
-    // margin-top: 70px;
+
+    @include ttl($color: $mainColor);
+
     @include max(m) {
       font-size: 120%;
       padding-top: 100px;
@@ -828,15 +802,8 @@ main merit
 
     &::after {
       content: "Merit";
-      color: $mainColor;
-      @include danceScript;
-      font-size: 500%;
-      opacity: 0.3;
-      position: absolute;
-      @include positionArrangement;
-      z-index: -1;
-      padding-top: 20px;
-      // bottom: 2px;
+      @include ttlAfter;
+
 
       @include max(xs) {
         font-size: 300%;
@@ -852,17 +819,29 @@ main merit
       @include marginCenter;
       position: relative;
 
+      @include max(xl) {
+        position: static;
+        @include flex(space-between);
+      }
+
       @include max(m) {
         position: static;
         height: auto;
         width: 90%;
+        display: flex;
+        flex-direction: column;
       }
 
       .voiceBox__left {
         position: absolute;
         left: 0;
         z-index: 1;
-        top: 30px;
+        top: 50px;
+
+        @include max(xl) {
+          position: static;
+          width: 48%;
+        }
 
         @include max(m) {
           position: static;
@@ -875,7 +854,12 @@ main merit
         position: absolute;
         right: 0;
         z-index: 1;
-        top: 400px;
+        top: 450px;
+
+        @include max(xl) {
+          position: static;
+          width: 48%;
+        }
 
         @include max(m) {
           position: static;
@@ -900,6 +884,10 @@ main merit
       &:nth-child(even) {
         flex-direction: row-reverse;
 
+        @include max(xl) {
+          flex-direction: column;
+        }
+
         @include max(m) {
         flex-direction: column;
       }
@@ -907,6 +895,7 @@ main merit
 
       @include max(xl) {
         width: 90%;
+        flex-direction: column;
       }
 
       @include max(m) {
@@ -918,7 +907,7 @@ main merit
     &__textBox {
         width: 50%;
 
-        @include max(m) {
+        @include max(xl) {
           width: 90%;
           @include marginCenter;
         }
@@ -930,7 +919,7 @@ main merit
           color: $mainColor;
           margin-bottom: 30px;
 
-          @include max(m) {
+          @include max(xl) {
             text-align: center;
             margin-top: 20px;
             font-size: 140%;
@@ -959,16 +948,18 @@ main merit22
   
 
   .ttl2__pink {
-    color: $mainColor;
-    font-size: 150%;
-    font-weight: bold;
-    text-align: center;
-    padding-top: 150px;
-    position: relative;
-    z-index: 20;
-    margin-top: 0px;
 
-    @include max(m) {
+    @include ttl($color: $mainColor);
+    // color: $mainColor;
+    // font-size: 150%;
+    // font-weight: bold;
+    // text-align: center;
+    // padding-top: 150px;
+    // position: relative;
+    // z-index: 20;
+    // margin-top: 0px;
+
+    @include max(xl) {
       padding-top: 100px;
     }
   }
@@ -988,8 +979,8 @@ main merit22
     }
 
     &__box {
-      // width: 30%;
-      width: clamp(18.75rem, 11.607rem + 14.29vw, 25rem);
+      width: max(300px, 30%);
+      // width: clamp(18.75rem, 11.607rem + 14.29vw, 25rem);
       position: relative;
       margin-top: -50px;
 
@@ -1076,7 +1067,7 @@ main Requirements
   width: 100%;
   height: 120%;
   @include backGroundColor;
-  padding-top: 10%;
+  // padding-top: 150px;
   padding-bottom: 10%;
 
   clip-path: polygon(0 0, 100% 0%, 100% 90%, 50% 100%, 0 90%);
@@ -1084,36 +1075,30 @@ main Requirements
 
 
   @include max(xl) {
-    padding-top: 15%;
-    height: 120%;
+    // padding-top: 140px;
+    height: 100%;
     padding-bottom: 20%;
   }
 
   @include max(m) {
     // clip-path: polygon(0 0, 100% 0%, 100% 90%, 50% 100%, 0 90%);
-    padding-top: 20%;
+    // padding-top: 20%;
     padding-bottom: 20%;
     height: 500% !important;
     // height: 105vh;
   }
 
   @include max(xs) {
-    padding-top: 30%;
+    // padding-top: 30%;
     height: 120% !important;
     padding-bottom: 30%;
     // height: 115vh;
   }
 
   .ttl__white {
-    color: $cWhite;
-    font-size: 150%;
-    font-weight: bold;
-    text-align: center;
-    padding-top: 150px;
-    position: relative;
-    @include positionArrangement($top:10%, $translateY:-90%);
-    z-index: 20;
-    // margin-top: 70px;
+
+    @include ttl;
+
 
     @include max(m) {
       font-size: 120%;
@@ -1126,15 +1111,7 @@ main Requirements
 
     &::after {
       content: "Requirements";
-      color: $mainColor;
-      @include danceScript;
-      font-size: 500%;
-      opacity: 0.3;
-      position: absolute;
-      @include positionArrangement;
-      z-index: -1;
-      padding-top: 20px;
-      // bottom: 2px;
+      @include ttlAfter;
 
       @include max(xs) {
         font-size: 300%;
@@ -1149,23 +1126,23 @@ main Requirements
     border-collapse: separate;
     border-spacing: 5px;
     height: auto;
-    // margin-top: 30px;
+    margin-top: 30px;
 
     @include max(xxl) {
-      margin-top: -5%;
+      // margin-top: -5%;
     }
 
     @include max(xl) {
-      margin-top: -10%;
+      // margin-top: -10%;
     }
 
     @include max(m) {
       width: 90%;
-      margin-top: -10%;
+      // margin-top: -10%;
     }
 
     @include max(xs) {
-      margin-top: -20%;
+      // margin-top: -20%;
       width: 90%;
     }
     
@@ -1254,13 +1231,15 @@ main Entry
 
 .sec__entry {
   .ttl__pink {
-    color: $mainColor;
-    font-size: 150%;
-    font-weight: bold;
-    text-align: center;
-    padding-top: 150px;
-    position: relative;
-    z-index: 20;
+
+    @include ttl($color: $mainColor);
+    // color: $mainColor;
+    // font-size: 150%;
+    // font-weight: bold;
+    // text-align: center;
+    // padding-top: 150px;
+    // position: relative;
+    // z-index: 20;
     // margin-top: 70px;
 
     @include max(m) {
@@ -1270,14 +1249,15 @@ main Entry
 
     &::after {
       content: "Entry";
-      color: $mainColor;
-      @include danceScript;
-      font-size: 500%;
-      opacity: 0.3;
-      position: absolute;
-      @include positionArrangement;
-      z-index: -1;
-      padding-top: 20px;
+      @include ttlAfter;
+      // color: $mainColor;
+      // @include danceScript;
+      // font-size: 500%;
+      // opacity: 0.3;
+      // position: absolute;
+      // @include positionArrangement;
+      // z-index: -1;
+      // padding-top: 20px;
       // bottom: 2px;
 
       @include max(xs) {

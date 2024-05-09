@@ -264,27 +264,27 @@ main fv
 }
 .sec__fv__flontImg {
   position: absolute;
-  width: 30%;
-  right: 20%;
+  width: min(600px, 40%);
+  left: min(1100px, 60%);
   bottom: 0;
   z-index: 1;
 }
 @media only screen and (max-width: 1400px) {
   .sec__fv__flontImg {
-    width: 500px;
-    right: -10%;
+    width: max(700px, 50%);
+    left: min(500px, 70%);
   }
 }
 @media only screen and (max-width: 900px) {
   .sec__fv__flontImg {
-    width: 500px;
-    right: -20%;
+    width: max(600px, 50%);
+    left: min(500px, 40%);
   }
 }
 @media only screen and (max-width: 430px) {
   .sec__fv__flontImg {
-    width: clamp(6.25rem, -65.865rem + 384.62vw, 37.5rem);
-    right: -40%;
+    width: max(400px, 100%);
+    left: min(100px, 20%);
   }
 }
 .sec__fv__mainCatchCopy {
@@ -317,7 +317,7 @@ main fv
 @media only screen and (max-width: 430px) {
   .sec__fv__mainCatchCopy {
     font-size: 500%;
-    top: 40vh;
+    top: max(30vh, 50%);
   }
 }
 .sec__fv__mainCatchCopy__span {
@@ -338,7 +338,7 @@ main fv
 @media only screen and (max-width: 1400px) {
   .sec__fv__text1 {
     font-size: 400%;
-    bottom: 170px;
+    bottom: max(180px, 20%);
   }
 }
 @media only screen and (max-width: 900px) {
@@ -367,6 +367,7 @@ main fv
 @media only screen and (max-width: 1400px) {
   .sec__fv__text2 {
     font-size: 400%;
+    bottom: max(100px, 10%);
   }
 }
 @media only screen and (max-width: 900px) {
@@ -497,14 +498,7 @@ main concept
   position: relative;
   z-index: 20;
 }
-@media only screen and (max-width: 900px) {
-  .sec__concept .ttl__white {
-    font-size: 120%;
-    padding-top: 100px;
-  }
-}
 .sec__concept .ttl__white::after {
-  content: "Concept";
   color: #ff9999;
   font-family: "Dancing Script", cursive;
   font-weight: 400;
@@ -517,6 +511,8 @@ main concept
   transform: translate(-50%, -50%);
   z-index: -1;
   padding-top: 20px;
+  padding-bottom: 50px;
+  content: "Concept";
 }
 @media only screen and (max-width: 430px) {
   .sec__concept .ttl__white::after {
@@ -525,6 +521,7 @@ main concept
 }
 .sec__concept__box {
   margin-top: 90px;
+  margin-bottom: 100px;
   width: clamp(37.5rem, 23.214rem + 28.57vw, 50rem);
   display: block;
   margin-left: auto;
@@ -618,7 +615,6 @@ main seek
   padding-top: 150px;
   position: relative;
   z-index: 20;
-  margin-top: 70px;
 }
 @media only screen and (max-width: 900px) {
   .sec__seek .ttl__white {
@@ -645,6 +641,7 @@ main seek
   transform: translate(-50%, -50%);
   z-index: -1;
   padding-top: 20px;
+  padding-bottom: 50px;
 }
 @media only screen and (max-width: 430px) {
   .sec__seek .ttl__white::after {
@@ -799,13 +796,14 @@ main merit
   font-weight: 400;
   font-style: normal;
   font-size: 500%;
-  opacity: 0.3;
+  opacity: 0.5;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: -1;
   padding-top: 20px;
+  padding-bottom: 50px;
 }
 @media only screen and (max-width: 430px) {
   .sec__merit .ttl__pink::after {
@@ -820,18 +818,34 @@ main merit
   margin-right: auto;
   position: relative;
 }
+@media only screen and (max-width: 1400px) {
+  .sec__merit .sec__merit1__box {
+    position: static;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
 @media only screen and (max-width: 900px) {
   .sec__merit .sec__merit1__box {
     position: static;
     height: auto;
     width: 90%;
+    display: flex;
+    flex-direction: column;
   }
 }
 .sec__merit .sec__merit1__box .voiceBox__left {
   position: absolute;
   left: 0;
   z-index: 1;
-  top: 30px;
+  top: 50px;
+}
+@media only screen and (max-width: 1400px) {
+  .sec__merit .sec__merit1__box .voiceBox__left {
+    position: static;
+    width: 48%;
+  }
 }
 @media only screen and (max-width: 900px) {
   .sec__merit .sec__merit1__box .voiceBox__left {
@@ -844,7 +858,13 @@ main merit
   position: absolute;
   right: 0;
   z-index: 1;
-  top: 400px;
+  top: 450px;
+}
+@media only screen and (max-width: 1400px) {
+  .sec__merit .sec__merit1__box .voiceBox__right {
+    position: static;
+    width: 48%;
+  }
 }
 @media only screen and (max-width: 900px) {
   .sec__merit .sec__merit1__box .voiceBox__right {
@@ -869,6 +889,11 @@ main merit
 .sec__merit .sec__merit1__voiceBox:nth-child(even) {
   flex-direction: row-reverse;
 }
+@media only screen and (max-width: 1400px) {
+  .sec__merit .sec__merit1__voiceBox:nth-child(even) {
+    flex-direction: column;
+  }
+}
 @media only screen and (max-width: 900px) {
   .sec__merit .sec__merit1__voiceBox:nth-child(even) {
     flex-direction: column;
@@ -877,6 +902,7 @@ main merit
 @media only screen and (max-width: 1400px) {
   .sec__merit .sec__merit1__voiceBox {
     width: 90%;
+    flex-direction: column;
   }
 }
 @media only screen and (max-width: 900px) {
@@ -888,7 +914,7 @@ main merit
 .sec__merit .sec__merit1__textBox {
   width: 50%;
 }
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1400px) {
   .sec__merit .sec__merit1__textBox {
     width: 90%;
     display: block;
@@ -902,7 +928,7 @@ main merit
   color: #ff9999;
   margin-bottom: 30px;
 }
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1400px) {
   .sec__merit .sec__merit1__textBox-h3 {
     text-align: center;
     margin-top: 20px;
@@ -928,9 +954,8 @@ main merit
   padding-top: 150px;
   position: relative;
   z-index: 20;
-  margin-top: 0px;
 }
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1400px) {
   .sec__merit .ttl2__pink {
     padding-top: 100px;
   }
@@ -952,7 +977,7 @@ main merit
   }
 }
 .sec__merit .sec__merit2__box {
-  width: clamp(18.75rem, 11.607rem + 14.29vw, 25rem);
+  width: max(300px, 30%);
   position: relative;
   margin-top: -50px;
 }
@@ -1029,7 +1054,6 @@ main Requirements
   height: 120%;
   background: rgb(255, 153, 153);
   background: linear-gradient(349deg, rgb(255, 153, 153) 0%, rgb(255, 204, 204) 100%);
-  padding-top: 10%;
   padding-bottom: 10%;
   -webkit-clip-path: polygon(0 0, 100% 0%, 100% 90%, 50% 100%, 0 90%);
           clip-path: polygon(0 0, 100% 0%, 100% 90%, 50% 100%, 0 90%);
@@ -1037,21 +1061,18 @@ main Requirements
 }
 @media only screen and (max-width: 1400px) {
   .sec__req {
-    padding-top: 15%;
-    height: 120%;
+    height: 100%;
     padding-bottom: 20%;
   }
 }
 @media only screen and (max-width: 900px) {
   .sec__req {
-    padding-top: 20%;
     padding-bottom: 20%;
     height: 500% !important;
   }
 }
 @media only screen and (max-width: 430px) {
   .sec__req {
-    padding-top: 30%;
     height: 120% !important;
     padding-bottom: 30%;
   }
@@ -1063,9 +1084,6 @@ main Requirements
   text-align: center;
   padding-top: 150px;
   position: relative;
-  left: 50%;
-  top: 10%;
-  transform: translate(-50%, -90%);
   z-index: 20;
 }
 @media only screen and (max-width: 900px) {
@@ -1086,13 +1104,14 @@ main Requirements
   font-weight: 400;
   font-style: normal;
   font-size: 500%;
-  opacity: 0.3;
+  opacity: 0.5;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: -1;
   padding-top: 20px;
+  padding-bottom: 50px;
 }
 @media only screen and (max-width: 430px) {
   .sec__req .ttl__white::after {
@@ -1108,26 +1127,15 @@ main Requirements
   border-collapse: separate;
   border-spacing: 5px;
   height: auto;
-}
-@media only screen and (max-width: 2000px) {
-  .sec__req__table {
-    margin-top: -5%;
-  }
-}
-@media only screen and (max-width: 1400px) {
-  .sec__req__table {
-    margin-top: -10%;
-  }
+  margin-top: 30px;
 }
 @media only screen and (max-width: 900px) {
   .sec__req__table {
     width: 90%;
-    margin-top: -10%;
   }
 }
 @media only screen and (max-width: 430px) {
   .sec__req__table {
-    margin-top: -20%;
     width: 90%;
   }
 }
@@ -1230,13 +1238,14 @@ main Entry
   font-weight: 400;
   font-style: normal;
   font-size: 500%;
-  opacity: 0.3;
+  opacity: 0.5;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: -1;
   padding-top: 20px;
+  padding-bottom: 50px;
 }
 @media only screen and (max-width: 430px) {
   .sec__entry .ttl__pink::after {
