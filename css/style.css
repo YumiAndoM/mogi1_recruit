@@ -263,7 +263,7 @@ main fv
 }
 .sec__fv__flontImg {
   position: absolute;
-  width: min(550px, 40%);
+  width: min(550px, 35%);
   left: min(1000px, 55%);
   bottom: 0;
   z-index: 1;
@@ -290,7 +290,7 @@ main fv
   font-size: clamp(6.25rem, 0.083rem + 13.25vw, 12.5rem);
   position: absolute;
   z-index: 2;
-  top: 15vh;
+  top: 10vh;
   color: #FF6969;
   transform: rotate(-10deg);
   left: min(50px, 10%);
@@ -302,7 +302,7 @@ main fv
 @media only screen and (max-width: 1400px) {
   .sec__fv__mainCatchCopy {
     top: 30vh;
-    font-size: max(150px, 30%);
+    font-size: max(150px, 28%);
     left: 5%;
   }
 }
