@@ -44,3 +44,11 @@ $("#g-nav a").click(function () {//ナビゲーションのリンクがクリッ
     $("#g-nav").removeClass('panelactive');//ナビゲーションのpanelactiveクラスを除去
     $(".circle-bg").removeClass('circleactive');//丸背景のcircleactiveクラスを除去
 });
+
+
+
+//ヘッダーの高さ分だけコンテンツを下げる
+$(function() {
+  var height=$("#header").height();
+  $(".wrapper").css("margin-top", height + 10);//10pxだけ余裕をもたせる
+});
