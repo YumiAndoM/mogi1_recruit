@@ -88,7 +88,7 @@ header
           font-weight: bold;
           position: relative;
           padding: 0 10px;
-          position: relative;
+          // position: relative;
           z-index: 1;
           box-sizing: border-box;
 
@@ -297,18 +297,18 @@ main fv
 
   &__flontImg {
     position: absolute;
-    width: min(600px, 40%);
+    width: min(550px, 40%);
     // width: clamp(36.875rem, 36.363rem + 0.91vw, 37.5rem);
     // right: 20%;
-    left: min(1100px, 60%);
+    left: min(1000px, 55%);
     // right: clamp(-37.5rem, -95.192rem + 307.69vw, -12.5rem);
     bottom: 0;
     z-index: 1;
 
     @include max(xl) {
-      width: max(700px, 50%);
+      width: max(500px, 30%);
       // right: -10%;
-      left: min(500px, 70%);
+      left: min(700px, 60%);
     }
 
     @include max(m) {
@@ -334,8 +334,8 @@ main fv
     // top: clamp(6.25rem, 5.633rem + 1.32vw, 6.875rem);
     color: $mainColor2;
     transform: rotate(-10deg);
-    // left: 200px;
-    left: clamp(1.875rem, -8.609rem + 22.52vw, 12.5rem);
+    left: min(50px,10%);
+    // left: clamp(1.875rem, -8.609rem + 22.52vw, 12.5rem);
     font-family: "Zen Kurenaido", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -343,7 +343,8 @@ main fv
 
     @include max(xl) {
       top: 30vh;
-      font-size: 1000%;
+      // font-size: 1000%;
+      font-size: max(150px,30%);
       left: 5%;
     }
 
@@ -381,7 +382,8 @@ main fv
     padding: 20px 20px 15px 20px;
 
     @include max(xl) {
-      font-size: 400%;
+      // font-size: 400%;
+      font-size: max(50px, 20%);
       // bottom: 170px;
       bottom: max(180px, 20%);
     }
@@ -412,8 +414,9 @@ main fv
 
 
     @include max(xl) {
-      font-size: 400%;
-      bottom: max(100px, 10%);
+      // font-size: 400%;
+      font-size: max(50px, 20%);
+      bottom: max(80px, 10%);
     }
 
     @include max(m) {
@@ -812,132 +815,91 @@ main merit
     }
   }
 
-  .sec__merit1 {
-    &__box {
-      width: 80%;
-      height: 700px;
-      @include marginCenter;
-      position: relative;
+}
 
-      @include max(xl) {
-        position: static;
-        @include flex(space-between);
-      }
 
-      @include max(m) {
-        position: static;
-        height: auto;
-        width: 90%;
-        display: flex;
-        flex-direction: column;
-      }
 
-      .voiceBox__left {
-        position: absolute;
-        left: 0;
-        z-index: 1;
-        top: 50px;
+.sec__merit1 {
+  &__container {
+    width: 70%;
+    @include marginCenter;
+    margin-top: 30px;
 
-        @include max(xl) {
-          position: static;
-          width: 48%;
-        }
-
-        @include max(m) {
-          position: static;
-          width: 100%;
-          height: auto;
-        }
-      }
-
-      .voiceBox__right {
-        position: absolute;
-        right: 0;
-        z-index: 1;
-        top: 450px;
-
-        @include max(xl) {
-          position: static;
-          width: 48%;
-        }
-
-        @include max(m) {
-          position: static;
-          width: 100%;
-          height: auto;
-        }
-
-        .sec__merit1__img {
-          width: 220px;
-        }
-      }
+    @include max(xs) {
+      width: 95%;
     }
-
-    &__voiceBox {
-      background: $cWhite;
-      @include borderR;
-      border: 1px solid $mainColor;
-      width: 60%;
-      @include flex;
-      padding-top: 10px;
-
-      &:nth-child(even) {
-        flex-direction: row-reverse;
-
-        @include max(xl) {
-          flex-direction: column;
-        }
-
-        @include max(m) {
-        flex-direction: column;
-      }
-      }
-
-      @include max(xl) {
-        width: 90%;
-        flex-direction: column;
-      }
-
-      @include max(m) {
-        flex-direction: column;
-        margin-top: 30px;
-      }
-    }
-
-    &__textBox {
-        width: 50%;
-
-        @include max(xl) {
-          width: 90%;
-          @include marginCenter;
-        }
-        
-
-        &-h3 {
-          font-size: 150%;
-          font-weight: bold;
-          color: $mainColor;
-          margin-bottom: 30px;
-
-          @include max(xl) {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 140%;
-            margin-bottom: 10px;
-          }
-        }
-
-        &-p {
-          text-align: justify;
-          line-height: 1.2em;
-          padding-bottom: 10px;
-
-          @include max(m) {
-            font-size: 90%;
-          }
-        }
-      }
   }
+
+  &__box {
+    @include flex(space-between);
+    flex-wrap: wrap;
+    row-gap: 30px;
+  }
+
+  &__voiceBox {
+    background: $cWhite;
+    @include borderR;
+    border: solid 1px $mainColor;
+    width: max(600px, 55%);
+
+    @include flex;
+
+    @include max(m) {
+      width: max(800px, 90%);
+    }
+
+    @include max(xs) {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    &:nth-child(even) {
+      flex-direction: row-reverse;
+
+      @include max(xs) {
+      flex-direction: column;
+      }
+    }
+  }
+
+  &__textBox {
+    margin-left: 2%;
+    margin-right: 2%;
+    padding-bottom: 10px;
+
+    &-h3 {
+      font-size: min(24px, 120%);
+      font-weight: bold;
+      color: $mainColor;
+      margin-bottom: 10px;
+      margin-top: 20px;
+
+      @include max(xs) {
+        text-align: center;
+      }
+    }
+
+    &-p {
+      line-height: 1.3em;
+    }
+  }
+
+  &__img {
+    @include max(m) {
+      width: max(120px, 40%);
+    }
+
+    @include max(xs) {
+      width: max(200px, 60%);
+    }
+  }
+}
+
+.voiceBox__right {
+  margin-left: auto;
+} 
+
+
 
 
 
@@ -985,7 +947,7 @@ main merit22
       margin-top: -50px;
 
       @include max(m) {
-      width: 100%;
+      width: min(700px, 98%);
     }
 
       &__imgBox {
@@ -1052,7 +1014,7 @@ main merit22
     }
 
   }
-}
+
 
 
 /*------------------------------------------
@@ -1067,7 +1029,7 @@ main Requirements
   width: 100%;
   height: 120%;
   @include backGroundColor;
-  // padding-top: 150px;
+  padding-top: 10px;
   padding-bottom: 10%;
 
   clip-path: polygon(0 0, 100% 0%, 100% 90%, 50% 100%, 0 90%);
@@ -1688,7 +1650,7 @@ fade animation
 @keyframes fadeCrossAnime { 
   from {
     opacity: 0;
-    transform: rotateY(45deg);
+    transform: rotateY(-45deg);
   }
   to {
     opacity: 1;

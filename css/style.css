@@ -95,7 +95,6 @@ header
   font-weight: bold;
   position: relative;
   padding: 0 10px;
-  position: relative;
   z-index: 1;
   box-sizing: border-box;
 }
@@ -264,15 +263,15 @@ main fv
 }
 .sec__fv__flontImg {
   position: absolute;
-  width: min(600px, 40%);
-  left: min(1100px, 60%);
+  width: min(550px, 40%);
+  left: min(1000px, 55%);
   bottom: 0;
   z-index: 1;
 }
 @media only screen and (max-width: 1400px) {
   .sec__fv__flontImg {
-    width: max(700px, 50%);
-    left: min(500px, 70%);
+    width: max(500px, 30%);
+    left: min(700px, 60%);
   }
 }
 @media only screen and (max-width: 900px) {
@@ -294,7 +293,7 @@ main fv
   top: 15vh;
   color: #FF6969;
   transform: rotate(-10deg);
-  left: clamp(1.875rem, -8.609rem + 22.52vw, 12.5rem);
+  left: min(50px, 10%);
   font-family: "Zen Kurenaido", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -303,7 +302,7 @@ main fv
 @media only screen and (max-width: 1400px) {
   .sec__fv__mainCatchCopy {
     top: 30vh;
-    font-size: 1000%;
+    font-size: max(150px, 30%);
     left: 5%;
   }
 }
@@ -337,7 +336,7 @@ main fv
 }
 @media only screen and (max-width: 1400px) {
   .sec__fv__text1 {
-    font-size: 400%;
+    font-size: max(50px, 20%);
     bottom: max(180px, 20%);
   }
 }
@@ -366,8 +365,8 @@ main fv
 }
 @media only screen and (max-width: 1400px) {
   .sec__fv__text2 {
-    font-size: 400%;
-    bottom: max(100px, 10%);
+    font-size: max(50px, 20%);
+    bottom: max(80px, 10%);
   }
 }
 @media only screen and (max-width: 900px) {
@@ -770,9 +769,6 @@ main merit
 ------------------------------------------*/
 .sec__merit {
   width: 100%;
-  /*------------------------------------------
-  main merit22
-  ------------------------------------------*/
 }
 .sec__merit .ttl__pink {
   color: #ff9999;
@@ -810,143 +806,93 @@ main merit
     font-size: 300%;
   }
 }
-.sec__merit .sec__merit1__box {
-  width: 80%;
-  height: 700px;
+
+.sec__merit1__container {
+  width: 70%;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  position: relative;
+  margin-top: 30px;
 }
-@media only screen and (max-width: 1400px) {
-  .sec__merit .sec__merit1__box {
-    position: static;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+@media only screen and (max-width: 430px) {
+  .sec__merit1__container {
+    width: 95%;
   }
 }
-@media only screen and (max-width: 900px) {
-  .sec__merit .sec__merit1__box {
-    position: static;
-    height: auto;
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-  }
+.sec__merit1__box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  row-gap: 30px;
 }
-.sec__merit .sec__merit1__box .voiceBox__left {
-  position: absolute;
-  left: 0;
-  z-index: 1;
-  top: 50px;
-}
-@media only screen and (max-width: 1400px) {
-  .sec__merit .sec__merit1__box .voiceBox__left {
-    position: static;
-    width: 48%;
-  }
-}
-@media only screen and (max-width: 900px) {
-  .sec__merit .sec__merit1__box .voiceBox__left {
-    position: static;
-    width: 100%;
-    height: auto;
-  }
-}
-.sec__merit .sec__merit1__box .voiceBox__right {
-  position: absolute;
-  right: 0;
-  z-index: 1;
-  top: 450px;
-}
-@media only screen and (max-width: 1400px) {
-  .sec__merit .sec__merit1__box .voiceBox__right {
-    position: static;
-    width: 48%;
-  }
-}
-@media only screen and (max-width: 900px) {
-  .sec__merit .sec__merit1__box .voiceBox__right {
-    position: static;
-    width: 100%;
-    height: auto;
-  }
-}
-.sec__merit .sec__merit1__box .voiceBox__right .sec__merit1__img {
-  width: 220px;
-}
-.sec__merit .sec__merit1__voiceBox {
+.sec__merit1__voiceBox {
   background: #ffffff;
   border-radius: 2px;
-  border: 1px solid #ff9999;
-  width: 60%;
+  border: solid 1px #ff9999;
+  width: max(600px, 55%);
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 10px;
 }
-.sec__merit .sec__merit1__voiceBox:nth-child(even) {
+@media only screen and (max-width: 900px) {
+  .sec__merit1__voiceBox {
+    width: max(800px, 90%);
+  }
+}
+@media only screen and (max-width: 430px) {
+  .sec__merit1__voiceBox {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+.sec__merit1__voiceBox:nth-child(even) {
   flex-direction: row-reverse;
 }
-@media only screen and (max-width: 1400px) {
-  .sec__merit .sec__merit1__voiceBox:nth-child(even) {
+@media only screen and (max-width: 430px) {
+  .sec__merit1__voiceBox:nth-child(even) {
     flex-direction: column;
   }
 }
-@media only screen and (max-width: 900px) {
-  .sec__merit .sec__merit1__voiceBox:nth-child(even) {
-    flex-direction: column;
-  }
-}
-@media only screen and (max-width: 1400px) {
-  .sec__merit .sec__merit1__voiceBox {
-    width: 90%;
-    flex-direction: column;
-  }
-}
-@media only screen and (max-width: 900px) {
-  .sec__merit .sec__merit1__voiceBox {
-    flex-direction: column;
-    margin-top: 30px;
-  }
-}
-.sec__merit .sec__merit1__textBox {
-  width: 50%;
-}
-@media only screen and (max-width: 1400px) {
-  .sec__merit .sec__merit1__textBox {
-    width: 90%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-.sec__merit .sec__merit1__textBox-h3 {
-  font-size: 150%;
-  font-weight: bold;
-  color: #ff9999;
-  margin-bottom: 30px;
-}
-@media only screen and (max-width: 1400px) {
-  .sec__merit .sec__merit1__textBox-h3 {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 140%;
-    margin-bottom: 10px;
-  }
-}
-.sec__merit .sec__merit1__textBox-p {
-  text-align: justify;
-  line-height: 1.2em;
+.sec__merit1__textBox {
+  margin-left: 2%;
+  margin-right: 2%;
   padding-bottom: 10px;
 }
-@media only screen and (max-width: 900px) {
-  .sec__merit .sec__merit1__textBox-p {
-    font-size: 90%;
+.sec__merit1__textBox-h3 {
+  font-size: min(24px, 120%);
+  font-weight: bold;
+  color: #ff9999;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+@media only screen and (max-width: 430px) {
+  .sec__merit1__textBox-h3 {
+    text-align: center;
   }
 }
-.sec__merit .ttl2__pink {
+.sec__merit1__textBox-p {
+  line-height: 1.3em;
+}
+@media only screen and (max-width: 900px) {
+  .sec__merit1__img {
+    width: max(120px, 40%);
+  }
+}
+@media only screen and (max-width: 430px) {
+  .sec__merit1__img {
+    width: max(200px, 60%);
+  }
+}
+
+.voiceBox__right {
+  margin-left: auto;
+}
+
+/*------------------------------------------
+main merit22
+------------------------------------------*/
+.ttl2__pink {
   color: #ff9999;
   font-size: 150%;
   font-weight: bold;
@@ -956,11 +902,12 @@ main merit
   z-index: 20;
 }
 @media only screen and (max-width: 1400px) {
-  .sec__merit .ttl2__pink {
+  .ttl2__pink {
     padding-top: 100px;
   }
 }
-.sec__merit .sec__merit2__container {
+
+.sec__merit2__container {
   width: 80%;
   display: block;
   margin-left: auto;
@@ -971,22 +918,22 @@ main merit
   position: relative;
 }
 @media only screen and (max-width: 900px) {
-  .sec__merit .sec__merit2__container {
+  .sec__merit2__container {
     flex-direction: column;
     width: 100%;
   }
 }
-.sec__merit .sec__merit2__box {
+.sec__merit2__box {
   width: max(300px, 30%);
   position: relative;
   margin-top: -50px;
 }
 @media only screen and (max-width: 900px) {
-  .sec__merit .sec__merit2__box {
-    width: 100%;
+  .sec__merit2__box {
+    width: min(700px, 98%);
   }
 }
-.sec__merit .sec__merit2__box__imgBox {
+.sec__merit2__box__imgBox {
   width: 150px;
   height: 150px;
   border-radius: 50%;
@@ -999,12 +946,12 @@ main merit
   top: 40%;
   transform: translate(-50%, -60%);
 }
-.sec__merit .sec__merit2__box__imgBox-img {
+.sec__merit2__box__imgBox-img {
   width: 50%;
   display: flex;
   align-items: center;
 }
-.sec__merit .sec__merit2__box__textBox {
+.sec__merit2__box__textBox {
   width: 80%;
   background: #ff9999;
   color: #ffffff;
@@ -1019,12 +966,12 @@ main merit
   border-radius: 2px;
 }
 @media only screen and (max-width: 900px) {
-  .sec__merit .sec__merit2__box__textBox {
+  .sec__merit2__box__textBox {
     width: 80%;
     height: 150px;
   }
 }
-.sec__merit .sec__merit2__box__textBox-ttl {
+.sec__merit2__box__textBox-ttl {
   margin-top: 30px;
   font-weight: bold;
   font-size: 180%;
@@ -1032,16 +979,16 @@ main merit
   margin-bottom: 30px;
 }
 @media only screen and (max-width: 900px) {
-  .sec__merit .sec__merit2__box__textBox-ttl {
+  .sec__merit2__box__textBox-ttl {
     font-size: 120%;
     margin-top: 10px;
   }
 }
-.sec__merit .sec__merit2__box__textBox-text {
+.sec__merit2__box__textBox-text {
   line-height: 1.3em;
 }
 @media only screen and (max-width: 900px) {
-  .sec__merit .sec__merit2__box__textBox-text {
+  .sec__merit2__box__textBox-text {
     font-size: 100%;
   }
 }
@@ -1054,6 +1001,7 @@ main Requirements
   height: 120%;
   background: rgb(255, 153, 153);
   background: linear-gradient(349deg, rgb(255, 153, 153) 0%, rgb(255, 204, 204) 100%);
+  padding-top: 10px;
   padding-bottom: 10%;
   -webkit-clip-path: polygon(0 0, 100% 0%, 100% 90%, 50% 100%, 0 90%);
           clip-path: polygon(0 0, 100% 0%, 100% 90%, 50% 100%, 0 90%);
@@ -1471,7 +1419,7 @@ fade animation
 @keyframes fadeCrossAnime {
   from {
     opacity: 0;
-    transform: rotateY(45deg);
+    transform: rotateY(-45deg);
   }
   to {
     opacity: 1;
